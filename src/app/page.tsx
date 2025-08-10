@@ -1,10 +1,5 @@
-import Image from "next/image";
+import { redirect } from 'next/navigation';
 
-export default function Home() {
-  return (
-    <main>
-      <h1>Welcome to Propark</h1>
-      <Image src="/logo.png" alt="Propark Logo" width={200} height={200} />
-    </main>
-  );
+export default function HomePage() {
+  redirect('/welcome');
 }
