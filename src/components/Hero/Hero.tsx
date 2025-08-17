@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
-import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
 import slides from "@/utils/data.json";
 
 export default function HeroCarousel() {
@@ -18,14 +18,14 @@ export default function HeroCarousel() {
 		setIsTransitioning(true);
 		setCurrentSlide((prev) => (prev + 1) % slides.length);
 		setTimeout(() => setIsTransitioning(false), TRANSITION_DURATION);
-	}, [slides.length, isTransitioning]);
+	}, [isTransitioning]);
 
 	const prevSlide = useCallback(() => {
 		if (isTransitioning) return;
 		setIsTransitioning(true);
 		setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 		setTimeout(() => setIsTransitioning(false), TRANSITION_DURATION);
-	}, [slides.length, isTransitioning]);
+	}, [isTransitioning]);
 
 	const goToSlide = useCallback(
 		(index: number) => {
@@ -45,7 +45,7 @@ export default function HeroCarousel() {
 		}, AUTOPLAY_INTERVAL);
 
 		return () => clearInterval(interval);
-	}, [isAutoplay, isPaused, slides.length]);
+	}, [isAutoplay, isPaused]);
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
@@ -81,10 +81,13 @@ export default function HeroCarousel() {
 							}`}
 					>
 						<div className="relative h-full">
-							<img
+							<Image
 								src={slide.image}
 								alt={slide.title}
+								fill
 								className="absolute inset-0 w-full h-full object-cover brightness-110 contrast-105"
+								priority={index === 0}
+								sizes="100vw"
 							/>
 
 							<div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,15,35,0.35)] via-[rgba(0,30,60,0.2)] to-[rgba(0,0,0,0.4)]"></div>

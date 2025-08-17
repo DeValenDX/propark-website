@@ -1,5 +1,4 @@
-@reference "../../app/welcome/globals.css";
-
+@reference "../../app/globals.css";
 
 .header {
   @apply bg-white shadow-sm border-b border-gray-100 pt-6 pb-4;
@@ -13,7 +12,6 @@
   @apply flex justify-between items-center h-16;
 }
 
-
 .headerLogo {
   @apply flex-shrink-0;
 }
@@ -22,7 +20,6 @@
   @apply h-10 w-auto;
 }
 
-
 .headerNav {
   @apply hidden md:flex space-x-8;
 }
@@ -30,7 +27,6 @@
 .headerNavLink {
   @apply text-[#008FBE] hover:text-[#006d94] transition-colors duration-200 font-medium cursor-pointer;
 }
-
 
 .headerMenuBtn {
   @apply md:hidden text-[#008FBE] hover:text-[#006d94] focus:outline-none focus:text-[#006d94] transition-colors duration-200;
