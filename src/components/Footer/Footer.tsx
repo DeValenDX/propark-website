@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const Footer = () => {
 	return (
@@ -26,9 +27,22 @@ export const Footer = () => {
 						{/* Contacto */}
 						<div>
 							<h3 className="text-lg font-semibold mb-4 text-white">Contacto</h3>
-							<div className="space-y-2 text-sm text-gray-300">
-								{/* Aquí irá el contenido de contacto */}
-								<p>Contenido de contacto</p>
+							<div className="space-y-3 text-sm text-gray-300">
+								<p className="leading-relaxed">
+									Bosque de Radiatas, #10, Int 202,<br />
+									Col. Bosques de las Lomas,<br />
+									Cuajimalpa, CP 05120, CDMX
+								</p>
+								<p>
+									<a href="mailto:contacto@ppark.mx" className="hover:text-blue-400 transition-colors duration-200">
+										contacto@ppark.mx
+									</a>
+								</p>
+								<p>
+									<a href="tel:+525552590014" className="hover:text-blue-400 transition-colors duration-200">
+										+52 1 55 52590014
+									</a>
+								</p>
 							</div>
 						</div>
 
@@ -36,8 +50,11 @@ export const Footer = () => {
 						<div>
 							<h3 className="text-lg font-semibold mb-4 text-white">Servicios</h3>
 							<div className="space-y-2 text-sm text-gray-300">
-								{/* Aquí irá el contenido de servicios */}
-								<p>Contenido de servicios</p>
+								<p>Operación y administración</p>
+								<p>Auditoria y reportes</p>
+								<p>Consultoria, asesoría y gestión</p>
+								<p>Equipo y financiamiento</p>
+								<p>Valet Parking, Floor Valet y Eventos Especiales</p>
 							</div>
 						</div>
 
@@ -47,17 +64,85 @@ export const Footer = () => {
 							<div>
 								<h3 className="text-lg font-semibold mb-4 text-white">Aviso de privacidad</h3>
 								<div className="space-y-2 text-sm text-gray-300">
-									{/* Aquí irá el contenido del aviso de privacidad */}
-									<p>Contenido del aviso</p>
+									<Link 
+										href="/aviso-privacidad" 
+										className="hover:text-blue-400 transition-colors duration-200 block"
+									>
+										Consulta nuestro aviso de privacidad
+									</Link>
 								</div>
 							</div>
 
 							{/* Redes sociales */}
 							<div>
 								<h3 className="text-lg font-semibold mb-4 text-white">Redes sociales</h3>
-								<div className="space-y-2 text-sm text-gray-300">
-									{/* Aquí irán los enlaces de redes sociales */}
-									<p>Enlaces de redes sociales</p>
+								<div className="flex space-x-4">
+									{/* Facebook */}
+									<a 
+										href="#" 
+										className="group transition-all duration-300 hover:scale-110"
+										aria-label="Síguenos en Facebook"
+									>
+										<Image
+											src="/social-icons/fb.svg"
+											alt="Facebook"
+											width={32}
+											height={32}
+											className="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+										/>
+									</a>
+
+									{/* X (Twitter) */}
+									<a 
+										href="#" 
+										className="group transition-all duration-300 hover:scale-110"
+										aria-label="Síguenos en X (Twitter)"
+									>
+										<Image
+											src="/social-icons/X.svg"
+											alt="X (Twitter)"
+											width={32}
+											height={32}
+											className="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity duration-200"
+										/>
+									</a>
+
+									{/* Instagram */}
+									<a 
+										href="#" 
+										className="group transition-all duration-300 hover:scale-110"
+										aria-label="Síguenos en Instagram"
+									>
+										<Image
+											src="/social-icons/ig.svg"
+											alt="Instagram"
+											width={32}
+											height={32}
+											className="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity duration-200"
+										/>
+									</a>
+
+									{/* TikTok */}
+									<a 
+										href="#" 
+										className="group transition-all duration-300 hover:scale-110"
+										aria-label="Síguenos en TikTok"
+									>
+										<Image
+											src="/social-icons/tt.svg"
+											alt="TikTok"
+											width={32}
+											height={32}
+											className="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity duration-200"
+											style={{
+												filter: 'none !important',
+												WebkitFilter: 'none !important',
+												MozFilter: 'none !important',
+												msFilter: 'none !important',
+												transform: 'none !important'
+											}}
+										/>
+									</a>
 								</div>
 							</div>
 						</div>
