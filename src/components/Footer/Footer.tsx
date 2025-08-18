@@ -134,13 +134,6 @@ export const Footer = () => {
 											width={32}
 											height={32}
 											className="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity duration-200"
-											style={{
-												filter: 'none !important',
-												WebkitFilter: 'none !important',
-												MozFilter: 'none !important',
-												msFilter: 'none !important',
-												transform: 'none !important'
-											}}
 										/>
 									</a>
 								</div>

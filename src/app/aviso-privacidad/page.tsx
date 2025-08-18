@@ -1,17 +1,21 @@
 import React from 'react';
+import Image from 'next/image';
 
 export default function AvisoPrivacidad() {
 	return (
 		<div className="w-full">
-			
+			{/* Cabecero rectangular con imagen de fondo */}
 			<div className="relative w-full h-80">
-				<img
+				<Image
 					src="/img/parking.jpg"
 					alt="Estacionamiento ProPark"
-					className="w-full h-full object-cover"
+					fill
+					className="object-cover"
+					priority
+					sizes="100vw"
 				/>
 				
-				
+				{/* Título superpuesto */}
 				<div className="absolute inset-0 flex items-center justify-center">
 					<h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-blue-400 text-center drop-shadow-[0_4px_6px_rgba(0,0,0,0.9)] px-4">
 						Aviso de Privacidad
@@ -19,6 +23,7 @@ export default function AvisoPrivacidad() {
 				</div>
 			</div>
 
+			{/* Sección de contenido del aviso */}
 			<div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
 				<div className="max-w-4xl mx-auto">
 					<h2 className="text-3xl font-bold text-center text-gray-900 mb-8 uppercase tracking-wide">
@@ -27,7 +32,7 @@ export default function AvisoPrivacidad() {
 					
 					<div className="prose prose-lg max-w-none text-gray-700 space-y-6">
 						<p className="leading-relaxed">
-							En P PARK ADMINISTRACION S.A C.V. y/o PARK PRO ADMINISTRACIÓN MEXICO S DE R.L DE C.V (en adelante "PRO PARK"), valoramos la protección de tus datos personales y nos comprometemos a cumplir con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares. Este aviso tiene como objetivo informarte sobre qué datos recopilamos, cómo los utilizamos, manejamos y compartimos, y con quién lo hacemos de forma consensuada.
+							En P PARK ADMINISTRACION S.A C.V. y/o PARK PRO ADMINISTRACIÓN MEXICO S DE R.L DE C.V (en adelante &quot;PRO PARK&quot;), valoramos la protección de tus datos personales y nos comprometemos a cumplir con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares. Este aviso tiene como objetivo informarte sobre qué datos recopilamos, cómo los utilizamos, manejamos y compartimos, y con quién lo hacemos de forma consensuada.
 						</p>
 						
 						<p className="leading-relaxed">
@@ -111,7 +116,7 @@ export default function AvisoPrivacidad() {
 						</p>
 					</div>
 					
-					
+					{/* Línea separadora elegante */}
 					<div className="mt-12 pt-8 border-t-2 border-blue-400 w-24 mx-auto"></div>
 				</div>
 			</div>
