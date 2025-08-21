@@ -1,0 +1,20 @@
+[
+	{
+		"id": 1,
+		"image": "/parking-places/DSC02498.JPG",
+		"title": "Servicios de operación",
+		"description": "Ofrecemos servicios de operación y administración, asegurando que cada estacionamiento funcione de forma eficaz, con una experiencia satisfactoria para los usuarios, alineada con la oferta comercial de los clientes."
+	},
+	{
+		"id": 2,
+		"image": "/parking-places/DSC02327.JPG",
+		"title": "Control y confiabilidad",
+		"description": "Ofrecemos servicios de operación y administración, asegurando que cada estacionamiento funcione de forma eficaz, con una experiencia satisfactoria para los usuarios, alineada con la oferta comercial de los clientes."
+	},
+	{
+		"id": 3,
+		"image": "/parking-places/DSC02391.JPG",
+		"title": "Control y confiabilidad",
+		"description": "La tecnología y el diseño son nuestro motor para perseguir la innovación en cada operación de nuestros estacionamientos."
+	}
+]
