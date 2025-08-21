@@ -2,9 +2,9 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import slides from "@/utils/data.json";
+import slides from "@/utils/services-data.json";
 
-export default function HeroCarousel() {
+export default function ServicesHero() {
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [isAutoplay, setIsAutoplay] = useState(true);
 	const [isTransitioning, setIsTransitioning] = useState(false);
@@ -104,10 +104,10 @@ export default function HeroCarousel() {
 									</p>
 									<div className="flex flex-col sm:flex-row gap-4 justify-center">
 										<button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl">
-											Descubrir Más
+											Conocer Más
 										</button>
 										<button className="px-8 py-3 border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold rounded-lg transition-all duration-300">
-											Ver Demo
+											Contactar
 										</button>
 									</div>
 								</div>
@@ -116,43 +116,38 @@ export default function HeroCarousel() {
 					</div>
 				))}
 
-				{/* Controles de navegación solo si hay más de 1 slide */}
-				{slides.length > 1 && (
-					<>
-						<button
-							onClick={prevSlide}
-							disabled={isTransitioning}
-							className="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 p-3 rounded-full bg-gray-700 bg-opacity-20 hover:bg-opacity-30 text-white transition-all duration-300 backdrop-blur-sm disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-							aria-label="Diapositiva anterior"
-						>
-							<ChevronLeft size={24} />
-						</button>
+				<button
+					onClick={prevSlide}
+					disabled={isTransitioning}
+					className="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 p-3 rounded-full bg-gray-700 bg-opacity-20 hover:bg-opacity-30 text-white transition-all duration-300 backdrop-blur-sm disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+					aria-label="Diapositiva anterior"
+				>
+					<ChevronLeft size={24} />
+				</button>
 
-						<button
-							onClick={nextSlide}
-							disabled={isTransitioning}
-							className="absolute right-4 top-1/2 transform -translate-y-1/2 z-30 p-3 rounded-full bg-gray-700 bg-opacity-20 hover:bg-opacity-30 text-white transition-all duration-300 backdrop-blur-sm disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-							aria-label="Siguiente diapositiva"
-						>
-							<ChevronRight size={24} />
-						</button>
+				<button
+					onClick={nextSlide}
+					disabled={isTransitioning}
+					className="absolute right-4 top-1/2 transform -translate-y-1/2 z-30 p-3 rounded-full bg-gray-700 bg-opacity-30 text-white transition-all duration-300 backdrop-blur-sm disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+					aria-label="Siguiente diapositiva"
+				>
+					<ChevronRight size={24} />
+				</button>
 
-						<div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 flex space-x-3">
-							{slides.map((_, index) => (
-								<button
-									key={index}
-									onClick={() => goToSlide(index)}
-									disabled={isTransitioning}
-									className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
-										? "bg-white scale-125"
-										: "bg-white bg-opacity-50 hover:bg-opacity-75"
-										} disabled:cursor-not-allowed`}
-									aria-label={`Ir a diapositiva ${index + 1}`}
-								/>
-							))}
-						</div>
-					</>
-				)}
+				<div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 flex space-x-3">
+					{slides.map((_, index) => (
+						<button
+							key={index}
+							onClick={() => goToSlide(index)}
+							disabled={isTransitioning}
+							className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
+								? "bg-white scale-125"
+								: "bg-white bg-opacity-50 hover:bg-opacity-75"
+								} disabled:cursor-not-allowed`}
+							aria-label={`Ir a diapositiva ${index + 1}`}
+						/>
+					))}
+				</div>
 
 				{isAutoplay && !isPaused && (
 					<div className="absolute bottom-0 left-0 w-full h-1 bg-gray-800 bg-opacity-30 z-30">
