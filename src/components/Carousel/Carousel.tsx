@@ -1,16 +1,15 @@
 "use client";
-import { useSpring, animated } from "@react-spring/web";
-import { useInView } from "@react-spring/web";
-import { useRef } from "react";
+import { useSprings, animated } from "@react-spring/web";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import companiesData from "../../app/utils/companies.json";
 
 export default function Carousel() {
 	const companies = companiesData?.companies ?? [];
 	const loop = [...companies, ...companies];
 	
-	// Referencia para detectar cuando el logo está en vista
-	const logoRef = useRef(null);
-	const [logoInView] = useInView(logoRef, { once: true });
+	// Estado para la animación del logo
+	const [logoLoaded, setLogoLoaded] = useState(false);
 
 	// Definir el orden y las letras del logo
 	const logoLetters = [
@@ -23,6 +22,39 @@ export default function Carousel() {
 		{ id: 'K', file: '/animated-logo/K.svg', delay: 1200 },
 	];
 
+	// Crear springs para todas las letras usando useSprings
+	const springs = useSprings(
+		logoLetters.length,
+		logoLetters.map((letter) => ({
+			from: { 
+				opacity: 0, 
+				transform: 'translateY(50px) scale(0.5)',
+			},
+			to: logoLoaded ? {
+				opacity: 1,
+				transform: 'translateY(0px) scale(1)'
+			} : {
+				opacity: 0,
+				transform: 'translateY(50px) scale(0.5)'
+			},
+			delay: letter.delay,
+			config: {
+				tension: 300,
+				friction: 20,
+				mass: 1
+			}
+		}))
+	);
+
+	useEffect(() => {
+		// Activar la animación después de un pequeño delay
+		const timer = setTimeout(() => {
+			setLogoLoaded(true);
+		}, 500);
+
+		return () => clearTimeout(timer);
+	}, []);
+
 	return (
 		<div className="relative w-full h-screen overflow-hidden bg-white flex flex-col  ">
 			{/* Hero con textos */}
@@ -32,42 +64,22 @@ export default function Carousel() {
 				</h3>
 
 				{/* Logo animado "ProPark" con React Spring */}
-				<div ref={logoRef} className="flex items-center justify-center">
-					{logoLetters.map((letter, index) => {
-						const springProps = useSpring({
-							from: { 
-								opacity: 0, 
-								transform: 'translateY(50px) scale(0.5)',
-								delay: letter.delay
-							},
-							to: logoInView ? {
-								opacity: 1,
-								transform: 'translateY(0px) scale(1)'
-							} : {
-								opacity: 0,
-								transform: 'translateY(50px) scale(0.5)'
-							},
-							config: {
-								tension: 300,
-								friction: 20,
-								mass: 1
-							}
-						});
-
-						return (
-							<animated.div
-								key={letter.id}
-								style={springProps}
-								className="mx-1"
-							>
-								<img
-									src={letter.file}
-									alt={`ProPark Logo Letter ${letter.id}`}
-									className="h-16 md:h-20 lg:h-24 w-auto"
-								/>
-							</animated.div>
-						);
-					})}
+				<div className="flex items-center justify-center">
+					{logoLetters.map((letter, index) => (
+						<animated.div
+							key={letter.id}
+							style={springs[index]}
+							className="mx-1"
+						>
+							<Image
+								src={letter.file}
+								alt={`ProPark Logo Letter ${letter.id}`}
+								width={96}
+								height={96}
+								className="h-16 md:h-20 lg:h-24 w-auto"
+							/>
+						</animated.div>
+					))}
 				</div>
 
 				<p className="text-center text-sm md:text-base lg:text-lg text-blue-900/90 max-w-4xl leading-relaxed font-medium">
@@ -87,9 +99,11 @@ export default function Carousel() {
 							className="flex-none w-64 h-80 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] backdrop-blur-sm border border-gray-100 transform transition-all duration-300 ease-out hover:scale-102 hover:shadow-[0_8px_35px_rgb(0,143,190,0.12)] overflow-hidden flex flex-col items-center justify-center group"
 						>
 							<div className="relative w-full h-full flex items-center justify-center p-8 transition-transform duration-300 group-hover:scale-105">
-								<img
+								<Image
 									src={company.path}
 									alt={`Logo ${index + 1}`}
+									width={176}
+									height={176}
 									className="max-w-44 max-h-44 object-contain filter brightness-95 group-hover:brightness-100 transition-all duration-300"
 								/>
 							</div>
