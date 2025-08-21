@@ -27,7 +27,7 @@ export const Header = () => {
 				<div className={styles.headerContent}>
 
 					<div className={styles.headerLogo}>
-						<Link href="/">
+						<Link href="/welcome">
 							<Image
 								src="/img/logo.png"
 								alt="ProPark Logo"
