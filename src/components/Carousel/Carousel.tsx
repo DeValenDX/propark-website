@@ -1,8 +1,28 @@
 "use client";
+import { useSpring, animated } from "@react-spring/web";
+import { useInView } from "@react-spring/web";
+import { useRef } from "react";
 import companiesData from "../../app/utils/companies.json";
+
 export default function Carousel() {
 	const companies = companiesData?.companies ?? [];
 	const loop = [...companies, ...companies];
+	
+	// Referencia para detectar cuando el logo está en vista
+	const logoRef = useRef(null);
+	const [logoInView] = useInView(logoRef, { once: true });
+
+	// Definir el orden y las letras del logo
+	const logoLetters = [
+		{ id: 'P1', file: '/animated-logo/P1.svg', delay: 0 },
+		{ id: 'R1', file: '/animated-logo/R1.svg', delay: 200 },
+		{ id: 'O', file: '/animated-logo/O.svg', delay: 400 },
+		{ id: 'P2', file: '/animated-logo/P2.svg', delay: 600 },
+		{ id: 'A', file: '/animated-logo/A.svg', delay: 800 },
+		{ id: 'R2', file: '/animated-logo/R2.svg', delay: 1000 },
+		{ id: 'K', file: '/animated-logo/K.svg', delay: 1200 },
+	];
+
 	return (
 		<div className="relative w-full h-screen overflow-hidden bg-white flex flex-col  ">
 			{/* Hero con textos */}
@@ -11,9 +31,44 @@ export default function Carousel() {
 					Bienvenido a la nueva era de la movilidad urbana
 				</h3>
 
-				<h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-center text-[#008fbe] leading-tight">
-					ProPark
-				</h1>
+				{/* Logo animado "ProPark" con React Spring */}
+				<div ref={logoRef} className="flex items-center justify-center">
+					{logoLetters.map((letter, index) => {
+						const springProps = useSpring({
+							from: { 
+								opacity: 0, 
+								transform: 'translateY(50px) scale(0.5)',
+								delay: letter.delay
+							},
+							to: logoInView ? {
+								opacity: 1,
+								transform: 'translateY(0px) scale(1)'
+							} : {
+								opacity: 0,
+								transform: 'translateY(50px) scale(0.5)'
+							},
+							config: {
+								tension: 300,
+								friction: 20,
+								mass: 1
+							}
+						});
+
+						return (
+							<animated.div
+								key={letter.id}
+								style={springProps}
+								className="mx-1"
+							>
+								<img
+									src={letter.file}
+									alt={`ProPark Logo Letter ${letter.id}`}
+									className="h-16 md:h-20 lg:h-24 w-auto"
+								/>
+							</animated.div>
+						);
+					})}
+				</div>
 
 				<p className="text-center text-sm md:text-base lg:text-lg text-blue-900/90 max-w-4xl leading-relaxed font-medium">
 					En Pro Park somos especialistas en la gestión y operación eficiente de
