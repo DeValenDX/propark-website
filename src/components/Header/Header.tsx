@@ -5,16 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 
 const menuItems = [
-	{ name: "Inicio", href: "/" },
-	{ name: "Quienes Somos", href: "/quienes-somos" },
-	{ name: "Servicios", href: "/services" },
-	{ name: "Estacionamientos", href: "/estacionamientos" },
-	{ name: "Contacto", href: "/contacto" },
-	{ name: "Bolsa de trabajo", href: "/bolsa-trabajo" },
-	{ name: "Facturación", href: "/billing" },
+	{ name: "Inicio", href: "inicio" },
+	{ name: "Quienes Somos", href: "who-we-are" },
+	{ name: "Servicios", href: "services" },
+	{ name: "Estacionamientos", href: "parkings" },
+	{ name: "Contacto", href: "contacto" },
+	{ name: "Bolsa de trabajo", href: "bolsa-trabajo" },
+	{ name: "Facturación", href: "billing" },
 ];
 
-// Definir el orden y las letras del logo
+
+
 const logoLetters = [
 	{ id: 'P1', file: '/animated-logo/P1.svg', delay: 0 },
 	{ id: 'R1', file: '/animated-logo/R1.svg', delay: 200 },
@@ -33,7 +34,7 @@ export const Header = () => {
 	const closeMenu = () => setIsMenuOpen(false);
 
 	useEffect(() => {
-		// Activar la animación después de un pequeño delay
+
 		const timer = setTimeout(() => {
 			setLogoLoaded(true);
 		}, 500);
@@ -53,17 +54,16 @@ export const Header = () => {
 								<div className="text-[#008FBE] text-xs font-medium uppercase tracking-wider mb-1">
 									Estaciónate Aquí
 								</div>
-								
+
 								{/* Logo principal con letras animadas individualmente */}
 								<div className="flex items-center h-14">
 									{logoLetters.map((letter) => (
 										<div
 											key={letter.id}
-											className={`transition-all duration-1000 ease-out ${
-												logoLoaded 
-													? 'opacity-100 translate-y-0 scale-100' 
-													: 'opacity-0 translate-y-8 scale-75'
-											}`}
+											className={`transition-all duration-1000 ease-out ${logoLoaded
+												? 'opacity-100 translate-y-0 scale-100'
+												: 'opacity-0 translate-y-8 scale-75'
+												}`}
 											style={{
 												transitionDelay: `${letter.delay}ms`,
 											}}
@@ -85,15 +85,21 @@ export const Header = () => {
 
 					<nav className="hidden md:flex space-x-8">
 						{menuItems.map((item) => (
-							<Link
+							<button
 								key={item.name}
-								href={item.href}
+								onClick={() => {
+									const section = document.getElementById(item.href);
+									if (section) {
+										section.scrollIntoView({ behavior: "smooth" });
+									}
+								}}
 								className="text-[#008FBE] hover:text-[#006d94] transition-colors duration-200 font-medium cursor-pointer"
 							>
 								{item.name}
-							</Link>
+							</button>
 						))}
 					</nav>
+
 
 					<button
 						onClick={toggleMenu}
@@ -110,18 +116,22 @@ export const Header = () => {
 					</button>
 				</div>
 
-				<div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-					isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-				}`}>
+				<div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+					}`}>
 					{menuItems.map((item) => (
-						<Link
+						<button
 							key={item.name}
-							href={item.href}
-							className="block px-3 py-2 text-[#008FBE] hover:text-[#006d94] hover:bg-gray-50 rounded-md text-base font-medium cursor-pointer transition-colors duration-200"
-							onClick={closeMenu}
+							onClick={() => {
+								const section = document.getElementById(item.href);
+								if (section) {
+									section.scrollIntoView({ behavior: "smooth" });
+									closeMenu();
+								}
+							}}
+							className="block w-full text-left px-3 py-2 text-[#008FBE] hover:text-[#006d94] hover:bg-gray-50 rounded-md text-base font-medium cursor-pointer transition-colors duration-200"
 						>
 							{item.name}
-						</Link>
+						</button>
 					))}
 				</div>
 			</div>
