@@ -1,10 +1,15 @@
-import React from 'react'
-import Carousel from '../../components/Carousel/Carousel'
+import WhoWeAre from '../../components/SPA/WhoWeAre '
+import Services from '../../components/SPA/Services'
+import Welcome from '../../components/SPA/Welcome'
+import Parkings from '../../components/SPA/Parkings'
 
-export default function Welcome() {
+export default function Page() {
 	return (
-		<div>
-			<Carousel />
-		</div>
+		<>
+			<Welcome id="inicio" />
+			<WhoWeAre id="who-we-are" />
+			<Services id="services" />
+			<Parkings id="parkings" />
+		</>
 	)
 }

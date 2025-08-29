@@ -1,4 +1,3 @@
-
 import "./globals.css";
 import type { Metadata } from "next";
 
@@ -7,7 +6,8 @@ import { Footer } from "@/components/Footer/Footer";
 
 export const metadata: Metadata = {
 	title: "ProPark - Estacionamientos Inteligentes",
-	description: "Sistema de estacionamientos inteligentes y gestión de servicios",
+	description:
+		"Sistema de estacionamientos inteligentes y gestión de servicios",
 };
 
 export default function RootLayout({
@@ -18,26 +18,11 @@ export default function RootLayout({
 	return (
 		<html lang="es-MX" className="h-full">
 			<body className="min-h-screen flex flex-col">
-				{/* Header */}
 				<Header />
-				{/* Contenido principal (flex-grow para empujar el footer) */}
-				<main className="bg-red-100 flex-grow">
-					{children}
-				</main>
-				{/* Footer */}
+				<main className=" flex-grow">{children}</main>
 				<Footer />
-				{/* <footer className="h-16 bg-gray-800 flex items-center justify-center text-white">
-				</footer> */}
 			</body>
 		</html>
-
-
-
-
 	);
 }
 
-{/* <Header />
-				<main className="min-h-screen bg-green-100">
-					{children}
-				</main> */}
