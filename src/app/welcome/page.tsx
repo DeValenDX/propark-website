@@ -7,9 +7,6 @@ export default function Page() {
 	return (
 		<>
 			<Welcome id="inicio" />
-			<WhoWeAre id="who-we-are" />
-			<Services id="services" />
-			<Parkings id="parkings" />
 		</>
 	)
 }
