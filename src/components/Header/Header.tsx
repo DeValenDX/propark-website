@@ -5,16 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 const menuItems = [
-	{ name: "Inicio", href: "inicio" },
-	{ name: "Quienes Somos", href: "who-we-are" },
-	{ name: "Servicios", href: "services" },
-	{ name: "Estacionamientos", href: "parkings" },
+	{ name: "Inicio", href: "/" },
+	{ name: "Quienes Somos", href: "quienes-somos" },
+	{ name: "Servicios", href: "servicios" },
+	{ name: "Estacionamientos", href: "estacionamientos" },
 	{ name: "Contacto", href: "contacto" },
 	{ name: "Bolsa de trabajo", href: "bolsa-trabajo" },
-	{ name: "Facturación", href: "billing" },
+	{ name: "Facturación", href: "facturacion" },
 ];
-
-
 
 const logoLetters = [
 	{ id: 'P1', file: '/animated-logo/P1.svg', delay: 0 },
@@ -34,11 +32,9 @@ export const Header = () => {
 	const closeMenu = () => setIsMenuOpen(false);
 
 	useEffect(() => {
-
 		const timer = setTimeout(() => {
 			setLogoLoaded(true);
 		}, 500);
-
 		return () => clearTimeout(timer);
 	}, []);
 
@@ -85,18 +81,15 @@ export const Header = () => {
 
 					<nav className="hidden md:flex space-x-8">
 						{menuItems.map((item) => (
-							<button
+							<Link
 								key={item.name}
-								onClick={() => {
-									const section = document.getElementById(item.href);
-									if (section) {
-										section.scrollIntoView({ behavior: "smooth" });
-									}
-								}}
+								href={item.href}
+								scroll={false}
 								className="text-[#008FBE] hover:text-[#006d94] transition-colors duration-200 font-medium cursor-pointer"
+
 							>
 								{item.name}
-							</button>
+							</Link>
 						))}
 					</nav>
 
