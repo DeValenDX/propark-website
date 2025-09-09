@@ -30,15 +30,15 @@ const whatsappConfigs: Record<string, WhatsAppConfig> = {
     mensaje: "Hola, me interesa conocer los estacionamientos de ProPark",
   },
   "/contacto": {
-    numero: "525598765432", // Número para contacto
+    numero: "525568166346", // Número para contacto
     mensaje: "Hola, me gustaría contactar con ProPark",
   },
   "/bolsa-trabajo": {
-    numero: "525555555555", // Número para bolsa de trabajo
+    numero: "525618507356", // Número para bolsa de trabajo
     mensaje: "Hola, me interesa trabajar en ProPark",
   },
   "/facturacion": {
-    numero: "525544444444", // Número para facturación
+    numero: "525567098200", // Número para facturación
     mensaje: "Hola, necesito ayuda con la facturación de ProPark",
   },
 };
