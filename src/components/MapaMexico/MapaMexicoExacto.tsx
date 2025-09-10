@@ -6,7 +6,8 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 // Fix para los iconos de Leaflet
-delete (L.Icon.Default.prototype as any)._getIconUrl;
+delete (L.Icon.Default.prototype as unknown as { _getIconUrl?: unknown })
+  ._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
@@ -49,8 +50,11 @@ export default function MapaMexicoExacto({
   colorHover = "#006d94",
   colorDefault = "#e5e7eb",
 }: MapaMexicoExactoProps) {
-  const [mexicoData, setMexicoData] = useState<any>(null);
-  const [estadosEspecificos, setEstadosEspecificos] = useState<any[]>([]);
+  const [mexicoData, setMexicoData] =
+    useState<GeoJSON.FeatureCollection | null>(null);
+  const [estadosEspecificos, setEstadosEspecificos] = useState<
+    GeoJSON.FeatureCollection[]
+  >([]);
   const [estadoHover, setEstadoHover] = useState<string | null>(null);
 
   // Normaliza nombres y mapea ciudades a su estado
@@ -103,7 +107,7 @@ export default function MapaMexicoExacto({
     return colorDefault;
   };
 
-  const style = (feature: any, isEstadoEspecifico = false) => {
+  const style = (feature: GeoJSON.Feature, isEstadoEspecifico = false) => {
     if (isEstadoEspecifico) {
       // Estados específicos siempre en azul
       return {
@@ -141,8 +145,8 @@ export default function MapaMexicoExacto({
   };
 
   const onEachFeature = (
-    feature: any,
-    layer: any,
+    feature: GeoJSON.Feature,
+    layer: L.Layer,
     isEstadoEspecifico = false,
     estadoNombre = ""
   ) => {
@@ -211,9 +215,9 @@ export default function MapaMexicoExacto({
               {/* Mapa completo de México (gris) */}
               <GeoJSON
                 data={mexicoData}
-                style={(feature) => style(feature, false)}
+                style={(feature) => (feature ? style(feature, false) : {})}
                 onEachFeature={(feature, layer) =>
-                  onEachFeature(feature, layer, false)
+                  feature ? onEachFeature(feature, layer, false) : null
                 }
               />
               {/* Estados específicos (azul) */}
@@ -232,9 +236,11 @@ export default function MapaMexicoExacto({
                   <GeoJSON
                     key={index}
                     data={estadoData}
-                    style={(feature) => style(feature, true)}
+                    style={(feature) => (feature ? style(feature, true) : {})}
                     onEachFeature={(feature, layer) =>
-                      onEachFeature(feature, layer, true, nombreEstado)
+                      feature
+                        ? onEachFeature(feature, layer, true, nombreEstado)
+                        : null
                     }
                   />
                 );

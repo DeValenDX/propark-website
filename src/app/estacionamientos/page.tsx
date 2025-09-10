@@ -1,5 +1,19 @@
+"use client";
+
 import React from "react";
-import MapaMexicoExacto from "@/components/MapaMexico/MapaMexicoExacto";
+import dynamic from "next/dynamic";
+
+const MapaMexicoExacto = dynamic(
+  () => import("@/components/MapaMexico/MapaMexicoExacto"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex items-center justify-center h-64">
+        Cargando mapa...
+      </div>
+    ),
+  }
+);
 
 export default function Parkings() {
   return (
