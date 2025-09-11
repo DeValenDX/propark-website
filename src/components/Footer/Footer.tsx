@@ -11,11 +11,11 @@ export const Footer = () => {
             <div className="lg:col-span-1">
               <div className="mb-4">
                 <Image
-                  src="/img/logo.png"
+                  src="/logo estatico.png"
                   alt="ProPark Logo"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto"
+                  width={150}
+                  height={50}
+                  className="h-12 w-auto"
                 />
               </div>
               <p className="text-gray-300 text-sm leading-relaxed max-w-md">
@@ -31,11 +31,9 @@ export const Footer = () => {
               </h3>
               <div className="space-y-3 text-sm text-gray-300">
                 <p className="leading-relaxed">
-                  Avenida Prolongación Paseo de la Reforma 379,
+                  Av. Pról. Paseo de la Reforma No. 379, Piso 10, Desp 7,
                   <br />
-                  Piso 10, Lomas de Santa Fe,
-                  <br />
-                  CDMX CP 01330, Álvaro Obregón
+                  Lomas de Santa Fe, Álvaro Obregón, Ciudad de México CP 01330
                 </p>
                 <p>
                   <a
@@ -46,11 +44,21 @@ export const Footer = () => {
                   </a>
                 </p>
                 <p>
+                  <strong>Fijo:</strong>{" "}
                   <a
                     href="tel:+525552590014"
                     className="hover:text-blue-400 transition-colors duration-200"
                   >
-                    +52 1 55 52590014
+                    55 5259 0014
+                  </a>
+                </p>
+                <p>
+                  <strong>Móvil:</strong>{" "}
+                  <a
+                    href="tel:+525568166346"
+                    className="hover:text-blue-400 transition-colors duration-200"
+                  >
+                    55 68 16 63 46
                   </a>
                 </p>
               </div>
