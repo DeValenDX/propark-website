@@ -34,9 +34,9 @@ export default function AvisoPrivacidad() {
             <p className="leading-relaxed">
               En P PARK ADMINISTRACION S.A. DE C.V. y/o PARK PRO ADMINISTRACIÓN
               MEXICO S. DE R.L. DE C.V. y/o PP ADMINISTRACIONES S.C. (en
-              adelante "PRO PARK"), valoramos la protección de tus datos
-              personales y nos comprometemos a cumplir con la Ley Federal de
-              Protección de Datos Personales en Posesión de los Particulares.
+              adelante &quot;PRO PARK&quot;), valoramos la protección de tus
+              datos personales y nos comprometemos a cumplir con la Ley Federal
+              de Protección de Datos Personales en Posesión de los Particulares.
               Este aviso tiene como objetivo informarte sobre qué datos
               recopilamos, cómo los utilizamos, manejamos y compartimos, y con
               quién lo hacemos de forma consensuada.
