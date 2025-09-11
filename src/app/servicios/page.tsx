@@ -9,7 +9,7 @@ export default function Services() {
 				{/* <div className="relative w-full bg-gray-400 h-96 flex items-center justify-center bg-[url('/parking-places/DSC02509.JPG')] bg-cover bg-center"> */}
 				<div className="relative w-full h-96 flex items-center justify-center">
 					<Image
-						src="/parking-places/DSC02509.jpg"
+						src="/parking-places/DSC02509.JPG"
 						alt="Imagen de estacionamiento"
 						fill
 						className="object-cover object-center"
