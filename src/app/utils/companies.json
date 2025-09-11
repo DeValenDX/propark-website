@@ -1,25 +1,49 @@
 {
-	"companies": [
-		{
-			"path": "/comp/ABC.png"
-		},
-		{
-			"path": "/comp/alhel.png"
-		},
-		{
-			"path": "/comp/copri.png"
-		},
-		{
-			"path": "/comp/hinnes.png"
-		},
-		{
-			"path": "/comp/nuevo_molino.png"
-		},
-		{
-			"path": "/comp/sodimac.png"
-		},
-		{
-			"path": "/comp/wallmart.png"
-		}
-	]
+  "companies": [
+    {
+      "path": "/comp/ABC.png"
+    },
+    {
+      "path": "/comp/alhel.png"
+    },
+    {
+      "path": "/comp/copri.png"
+    },
+    {
+      "path": "/comp/DIAGONAL.png"
+    },
+    {
+      "path": "/comp/Garden_logo_VF_Mesa de trabajo 1.png"
+    },
+    {
+      "path": "/comp/GRUPO CVO.jpg"
+    },
+    {
+      "path": "/comp/Grupo Inmobiliario Lewel.png"
+    },
+    {
+      "path": "/comp/hinnes.png"
+    },
+    {
+      "path": "/comp/HOME DEPOT.png"
+    },
+    {
+      "path": "/comp/LOGO AVERANDA.jpg"
+    },
+    {
+      "path": "/comp/LOGO CÚSPIDE BLANCO.png"
+    },
+    {
+      "path": "/comp/LOGO DEL PUENTE PNG.png"
+    },
+    {
+      "path": "/comp/nuevo_molino.png"
+    },
+    {
+      "path": "/comp/sodimac.png"
+    },
+    {
+      "path": "/comp/wallmart.png"
+    }
+  ]
 }

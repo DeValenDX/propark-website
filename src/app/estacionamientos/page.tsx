@@ -1,19 +1,7 @@
 "use client";
 
 import React from "react";
-import dynamic from "next/dynamic";
-
-const MapaMexicoExacto = dynamic(
-  () => import("@/components/MapaMexico/MapaMexicoExacto"),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="flex items-center justify-center h-64">
-        Cargando mapa...
-      </div>
-    ),
-  }
-);
+import Image from "next/image";
 
 export default function Parkings() {
   return (
@@ -29,45 +17,21 @@ export default function Parkings() {
           </p>
         </div>
 
-        <MapaMexicoExacto
-          estadosConServicio={[
-            "jalisco",
-            "michoacan",
-            "guanajuato",
-            "aguascalientes",
-            "zacatecas",
-            "queretaro",
-            "cdmx",
-            "mexico",
-          ]}
-          colorServicio="#008FBE"
-          colorHover="#006d94"
-          colorDefault="#e5e7eb"
-        />
-
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Estacionamientos Activos
-            </h3>
-            <p className="text-3xl font-bold text-[#008FBE] mb-2">8</p>
-            <p className="text-gray-600">Estados con servicio</p>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Capacidad Total
-            </h3>
-            <p className="text-3xl font-bold text-[#008FBE] mb-2">2,500+</p>
-            <p className="text-gray-600">Lugares disponibles</p>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Tecnología
-            </h3>
-            <p className="text-3xl font-bold text-[#008FBE] mb-2">100%</p>
-            <p className="text-gray-600">Sistemas inteligentes</p>
+        <div className="w-full max-w-4xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+              Mapa de Puntos de Venta
+            </h2>
+            <div className="relative">
+              <Image
+                src="/assets/mapa.png"
+                alt="Mapa de estacionamientos ProPark"
+                width={600}
+                height={375}
+                className="w-full h-auto rounded-lg max-w-2xl mx-auto"
+                priority
+              />
+            </div>
           </div>
         </div>
       </div>
