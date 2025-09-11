@@ -46,7 +46,18 @@ export default function Services() {
 	return (
 		<>
 			<section className="min-h-screen w-screen pb-32">
-				<div className="relative w-full bg-gray-400 h-96 flex items-center justify-center bg-[url('/parking-places/DSC02509.JPG')] bg-cover bg-center">
+				{/* <div className="relative w-full bg-gray-400 h-96 flex items-center justify-center bg-[url('/parking-places/DSC02509.JPG')] bg-cover bg-center"> */}
+				<div className="relative w-full h-96 flex items-center justify-center">
+					<Image
+						src="/parking-places/DSC02509.jpg"
+						alt="Imagen de estacionamiento"
+						fill
+						className="object-cover object-center"
+						priority
+						sizes="100vw"
+						placeholder="blur"
+						blurDataURL="/parking-places/PARKING-blur.jpg"
+					/>
 					{/* Degradado gris superpuesto más intenso */}
 					<div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-gray-800/70 flex flex-col items-center justify-center">
 						<div>
