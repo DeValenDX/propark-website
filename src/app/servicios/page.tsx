@@ -170,11 +170,9 @@ export default function Services() {
 									Experiencia
 								</span>
 								<p className="absolute inset-0 flex items-center justify-center text-white text-base font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-									Guía a os usuarios hasta los espacios disponibles de forma
-									fácil y rápida. Si facilitas y agilizas el estacionamiento
-									conseguirás tener meno congestiones, menos contaminación y
-									obtendrás una mayor satisfacción de los conductores y
-									usuarios.
+									Contamos con especialistas en cada rublo como parte de nuestro
+									compromiso ofrecemos garantizado nuestro compromiso con las
+									políticas de la empresa.
 								</p>
 							</div>
 						</div>
@@ -187,9 +185,9 @@ export default function Services() {
 									Sistemas Guiados
 								</span>
 								<p className="absolute inset-0 flex items-center justify-center text-white text-base font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-									Guía a os usuarios hasta los espacios disponibles de forma
+									Guíamos a los usuarios hasta los espacios disponibles de forma
 									fácil y rápida. Si facilitas y agilizas el estacionamiento
-									conseguirás tener meno congestiones, menos contaminación y
+									conseguirás tener menos congestiones, menos contaminación y
 									obtendrás una mayor satisfacción de los conductores y
 									usuarios.
 								</p>
