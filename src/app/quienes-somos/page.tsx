@@ -1,16 +1,10 @@
-import React from "react";
 import {
-	Target,
-	Eye,
 	Heart,
-	Settings,
-	BarChart3,
-	Users,
-	Handshake,
+	Settings, Handshake,
 	UserStar,
 	Shield,
 	Star,
-	Sparkles,
+	Sparkles
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
