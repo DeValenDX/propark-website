@@ -1,12 +1,9 @@
-import WhoWeAre from '../../components/SPA/WhoWeAre '
-import Services from '../../components/SPA/Services'
-import Welcome from '../../components/SPA/Welcome'
-import Parkings from '../../components/SPA/Parkings'
+import Welcome from "../../components/SPA/Welcome";
 
 export default function Page() {
-	return (
-		<>
-			<Welcome id="inicio" />
-		</>
-	)
+  return (
+    <>
+      <Welcome id="inicio" />
+    </>
+  );
 }
