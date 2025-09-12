@@ -38,10 +38,8 @@ export default function Carousel() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Sección Hero */}
-      <section className="h-[70vh] bg-[url('/parking-places/DSC02498.JPG')] bg-cover bg-center flex flex-col justify-center items-center text-center px-6 relative">
-        <div className="absolute inset-0 backdrop-blur-[2px] z-0" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#265b85]/80 to-[#1c3e5a]/90 z-0" />
-        <div className="relative z-10 flex flex-col items-center w-full max-w-4xl mx-auto">
+      <section className="h-[70vh] bg-gradient-to-b from-[#008FBE] to-[#006d94] flex flex-col justify-center items-center text-center px-6">
+        <div className="flex flex-col items-center w-full max-w-4xl mx-auto">
           <h1 className="text-white text-3xl md:text-5xl font-bold mb-4 leading-tight">
             Bienvenido a la nueva era <br /> de la movilidad urbana
           </h1>
