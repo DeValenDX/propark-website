@@ -30,7 +30,7 @@ export default function AvisoPrivacidad() {
             AVISO DE PRIVACIDAD
           </h2>
 
-          <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
+          <div className="prose prose-lg max-w-none text-gray-700 space-y-6 text-justify">
             <p className="leading-relaxed">
               En P PARK ADMINISTRACION S.A. DE C.V. y/o PARK PRO ADMINISTRACIÓN
               MEXICO S. DE R.L. DE C.V. y/o PP ADMINISTRACIONES S.C. (en
