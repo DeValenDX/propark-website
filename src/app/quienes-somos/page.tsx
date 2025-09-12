@@ -4,7 +4,9 @@ import {
 	UserStar,
 	Shield,
 	Star,
-	Sparkles
+	Sparkles,
+	Rocket,
+	Eye
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -83,107 +85,152 @@ export default function WhoWeAre() {
 				</div>
 				{/* Contenido de la sección */}
 			</div>
+
+			<div className="flex items-center justify-center mt-16 text-2xl font-semibold text-gray-800 flex-col gap-2">
+
+				<div className="relative bg-gradient-to-br flex items-center justify-center px-12 py-12 w-full max-w-4xl min-h-[360px] overflow-hidden">
+					<div className="flex flex-col items-center relative z-10 w-full">
+						<span className="uppercase tracking-widest text-cyan-700 font-bold text-3xl mb-1 flex items-center gap-2 drop-shadow">
+							<Rocket size={34} strokeWidth={2.2} className="text-cyan-600" />
+							Misión
+						</span>
+						<div className="w-20 h-1 bg-gradient-to-r from-cyan-400 via-cyan-600 to-cyan-400 rounded-full mt-2 mb-4 shadow" />
+						<span className="text-center text-gray-700 text-2xl font-light max-w-3xl w-full drop-shadow-sm">
+							Operar y administrar estacionamientos con{" "}
+							<span className="font-semibold text-cyan-700">excelencia</span>,{" "}
+							<span className="font-semibold text-cyan-700">integridad</span> e{" "}
+							<span className="font-semibold text-cyan-700">innovación tecnológica</span>, garantizando la{" "}
+							<span className="font-semibold text-cyan-700">seguridad</span> del patrimonio de clientes y usuarios, así como el manejo{" "}
+							<span className="font-semibold text-cyan-700">responsable</span> y{" "}
+							<span className="font-semibold text-cyan-700">transparente</span> de los recursos.
+						</span>
+					</div>
+					{/* Sutil overlay de brillo */}
+					<div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-tr from-white/10 via-cyan-100/10 to-white/0" />
+				</div>
+			</div>
+
+			<div className="flex items-center justify-center  text-2xl font-semibold text-gray-800 flex-col gap-2">
+				<div className="relative bg-gradient-to-br flex items-center justify-center px-12 py-12 w-full max-w-4xl min-h-[360px] overflow-hidden">
+					<div className="flex flex-col items-center relative z-10 w-full">
+						<span className="uppercase tracking-widest text-cyan-700 font-bold text-3xl mb-1 flex items-center gap-2 drop-shadow">
+							<Eye size={34} strokeWidth={2.2} className="text-cyan-600" />
+							Visión
+						</span>
+						<div className="w-20 h-1 bg-gradient-to-r from-cyan-400 via-cyan-600 to-cyan-400 rounded-full mt-2 mb-4 shadow" />
+						<span className="text-center text-gray-700 text-2xl font-light max-w-3xl w-full drop-shadow-sm">
+							Ser la empresa <span className="font-semibold text-cyan-700">líder</span> en <span className="font-semibold text-cyan-700">soluciones</span> de <span className="font-semibold text-cyan-700">operación</span> y <span className="font-semibold text-cyan-700">administración</span> de <span className="font-semibold text-cyan-700">estacionamientos</span> en <span className="font-semibold text-cyan-700">México</span>
+						</span>
+					</div>
+					{/* Sutil overlay de brillo */}
+					<div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-tr from-white/10 via-cyan-100/10 to-white/0" />
+				</div>
+			</div>
+
+
 			<div className="flex items-center justify-center mt-12 mb-8 text-4xl font-semibold text-gray-800 flex-col gap-4">
-				<div className="flex flex-col items-center mb-4">
-					<span className="uppercase tracking-widest text-cyan-700 font-bold text-3xl mb-1">
-						Nuestros valores
-					</span>
-					<h2 className="text-gray-800 font-semibold text-2xl  text-center drop-shadow-sm">
-						La base de nuestra identidad
-					</h2>
-					<div className="w-16 h-1 bg-cyan-400 rounded-full mt-2 mb-1" />
-				</div>
-
-				{/* Grid de cards de valores */}
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-2 px-2 md:px-0 w-full max-w-4xl mx-auto">
-					{/* Card 1 */}
-					<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
-						<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
-							<Settings size={28} strokeWidth={2} />
-						</div>
-						<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
-							Integridad
-						</div>
-						<div className="text-gray-500 text-center text-xs z-10">
-							Actuamos con honestidad y respeto.
-						</div>
+				<>
+					<div className="flex flex-col items-center mb-4">
+						<span className="uppercase tracking-widest text-cyan-700 font-bold text-3xl mb-1">
+							Nuestros valores
+						</span>
+						<h2 className="text-gray-800 font-semibold text-2xl  text-center drop-shadow-sm">
+							La base de nuestra identidad
+						</h2>
+						<div className="w-16 h-1 bg-cyan-400 rounded-full mt-2 mb-1" />
 					</div>
 
-					{/* Card 2 */}
-					<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
-						<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
-							<Heart size={28} strokeWidth={2} />
+					{/* Grid de cards de valores */}
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-2 px-2 md:px-0 w-full max-w-4xl mx-auto">
+						{/* Card 1 */}
+						<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
+							<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
+								<Settings size={28} strokeWidth={2} />
+							</div>
+							<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
+								Integridad
+							</div>
+							<div className="text-gray-500 text-center text-xs z-10">
+								Actuamos con honestidad y respeto.
+							</div>
 						</div>
-						<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
-							Desarrollo humano
-						</div>
-						<div className="text-gray-500 text-center text-xs z-10">
-							Impulsamos el crecimiento de nuestra gente.
-						</div>
-					</div>
 
-					{/* Card 3 */}
-					<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
-						<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
-							<Handshake size={28} strokeWidth={2} />
+						{/* Card 2 */}
+						<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
+							<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
+								<Heart size={28} strokeWidth={2} />
+							</div>
+							<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
+								Desarrollo humano
+							</div>
+							<div className="text-gray-500 text-center text-xs z-10">
+								Impulsamos el crecimiento de nuestra gente.
+							</div>
 						</div>
-						<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
-							Trabajo en equipo
-						</div>
-						<div className="text-gray-500 text-center text-xs z-10">
-							Colaboramos para lograr metas comunes.
-						</div>
-					</div>
 
-					{/* Card 4 */}
-					<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
-						<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
-							<UserStar size={28} strokeWidth={2} />
+						{/* Card 3 */}
+						<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
+							<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
+								<Handshake size={28} strokeWidth={2} />
+							</div>
+							<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
+								Trabajo en equipo
+							</div>
+							<div className="text-gray-500 text-center text-xs z-10">
+								Colaboramos para lograr metas comunes.
+							</div>
 						</div>
-						<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
-							Responsabilidad
-						</div>
-						<div className="text-gray-500 text-center text-xs z-10">
-							Cumplimos nuestros compromisos.
-						</div>
-					</div>
-				</div>
-				{/* Segunda hilera centrada */}
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-4 px-2 md:px-0 w-full max-w-3xl mx-auto justify-center">
-					<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
-						<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
-							<Shield size={28} strokeWidth={2} />
-						</div>
-						<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
-							Seguridad
-						</div>
-						<div className="text-gray-500 text-center text-xs z-10">
-							Protegemos personas, bienes y operaciones.
-						</div>
-					</div>
-					<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
-						<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
-							<Star size={28} strokeWidth={2} />
-						</div>
-						<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
-							Excelencia operativa
-						</div>
-						<div className="text-gray-500 text-center text-xs z-10">
-							Trabajamos con calidad y eficiencia.
+
+						{/* Card 4 */}
+						<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
+							<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
+								<UserStar size={28} strokeWidth={2} />
+							</div>
+							<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
+								Responsabilidad
+							</div>
+							<div className="text-gray-500 text-center text-xs z-10">
+								Cumplimos nuestros compromisos.
+							</div>
 						</div>
 					</div>
-					<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
-						<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
-							<Sparkles size={28} strokeWidth={2} />
+					{/* Segunda hilera centrada */}
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-4 px-2 md:px-0 w-full max-w-3xl mx-auto justify-center">
+						<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
+							<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
+								<Shield size={28} strokeWidth={2} />
+							</div>
+							<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
+								Seguridad
+							</div>
+							<div className="text-gray-500 text-center text-xs z-10">
+								Protegemos personas, bienes y operaciones.
+							</div>
 						</div>
-						<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
-							Innovación
+						<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
+							<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
+								<Star size={28} strokeWidth={2} />
+							</div>
+							<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
+								Excelencia operativa
+							</div>
+							<div className="text-gray-500 text-center text-xs z-10">
+								Trabajamos con calidad y eficiencia.
+							</div>
 						</div>
-						<div className="text-gray-500 text-center text-xs z-10">
-							Mejoramos con tecnología y nuevas ideas.
+						<div className="group relative bg-white/90 border border-cyan-100 rounded-2xl shadow-md p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-white h-40 w-full">
+							<div className="mb-2 text-cyan-600 group-hover:text-cyan-800 transition-colors z-10">
+								<Sparkles size={28} strokeWidth={2} />
+							</div>
+							<div className="text-base font-semibold text-gray-800 mb-0.5 text-center z-10">
+								Innovación
+							</div>
+							<div className="text-gray-500 text-center text-xs z-10">
+								Mejoramos con tecnología y nuevas ideas.
+							</div>
 						</div>
 					</div>
-				</div>
+				</>
 
 				<div className="flex items-center justify-center mt-8  text-2xl font-semibold text-gray-800 flex-col gap-2">
 
@@ -303,6 +350,8 @@ export default function WhoWeAre() {
 						</div>
 					</div>
 				</div>
+
+
 			</div>
 
 
