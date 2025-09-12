@@ -1,6 +1,5 @@
 import { Settings, BarChart3, Users } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Services() {
   return (
