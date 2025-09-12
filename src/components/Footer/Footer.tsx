@@ -33,7 +33,7 @@ export const Footer = () => {
                 <p className="leading-relaxed">
                   Av. Pról. Paseo de la Reforma No. 379, Piso 10, Desp 7,
                   <br />
-                  Lomas de Santa Fe, Álvaro Obregón, Ciudad de México CP 01330
+                  Paseo de las Lomas, Álvaro Obregón, Ciudad de México CP 01330
                 </p>
                 <p>
                   <a
