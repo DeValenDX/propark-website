@@ -13,9 +13,9 @@ export const Footer = () => {
                 <Image
                   src="/logo estatico.png"
                   alt="ProPark Logo"
-                  width={150}
-                  height={50}
-                  className="h-12 w-auto"
+                  width={200}
+                  height={67}
+                  className="h-16 w-auto"
                 />
               </div>
               <p className="text-gray-300 text-sm leading-relaxed max-w-md">

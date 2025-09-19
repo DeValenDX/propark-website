@@ -1,13 +1,22 @@
 import { Settings, BarChart3, Users } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Services() {
   return (
     <>
       <section className="min-h-screen w-screen pb-32">
-        {/* <div className="relative w-full bg-gray-400 h-96 flex items-center justify-center bg-[url('/parking-places/DSC02509.JPG')] bg-cover bg-center"> */}
-        <div className="relative w-full h-96 flex items-center justify-center bg-gradient-to-b from-[#008FBE] to-[#006d94]">
-          <div className="flex flex-col items-center justify-center">
+        <div className="relative w-full h-96 flex items-center justify-center">
+          <Image
+            src="/services/services.png"
+            alt="Servicios ProPark"
+            fill
+            className="object-cover object-bottom"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-[#007DA8]/30" />
+          <div className="relative z-10 flex flex-col items-center justify-center">
             <div>
               <span className="relative text-5xl font-semibold text-white z-10">
                 [SERVICIOS]
@@ -118,10 +127,7 @@ export default function Services() {
           {/* Cards pegadas con imágenes, degradado más fuerte y título/descrición hover */}
           <div className="h-96 rounded-3xl shadow-lg overflow-hidden flex flex-row">
             {/* Card 1 */}
-            <div className="flex-1 relative group overflow-hidden flex items-center justify-center  bg-[url('/assets/eficiencia.jpg')] bg-cover bg-center  transition-transform duration-300 hover:-translate-y-3 hover:scale-105">
-              {/* Gradiente más fuerte */}
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/70 to-transparent" />
-
+            <div className="flex-1 relative group overflow-hidden flex items-center justify-center bg-[#007DA8] transition-transform duration-300 hover:-translate-y-3 hover:scale-105">
               {/* Contenedor de título y descripción */}
               <div className="relative z-10 text-center px-4">
                 <span className="text-2xl font-bold text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
@@ -165,8 +171,7 @@ export default function Services() {
             </div>
 
             {/* Card 4 */}
-            <div className="flex-1 relative group overflow-hidden flex items-center justify-center  bg-[url('/assets/estacionamiento.jpg')] bg-cover bg-center  transition-transform duration-300 hover:-translate-y-3 hover:scale-105">
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/70 to-transparent" />
+            <div className="flex-1 relative group overflow-hidden flex items-center justify-center bg-[#007DA8] transition-transform duration-300 hover:-translate-y-3 hover:scale-105">
               <div className="relative z-10 text-center px-4">
                 <span className="text-2xl font-bold text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
                   Sistemas Guiados
