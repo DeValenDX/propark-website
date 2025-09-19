@@ -55,32 +55,6 @@ export default function Parkings() {
           </div>
         </div>
       </div>
-
-      {/* Sección del mapa */}
-      <div className="w-full py-8 bg-gray-50">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-4">
-            <h2 className="text-xl font-bold text-gray-800 mb-2">
-              Nuestras Ubicaciones
-            </h2>
-            <p className="text-gray-600 max-w-lg mx-auto text-xs">
-              Descubre todos nuestros estacionamientos estratégicamente ubicados
-              para brindarte la mejor experiencia de movilidad urbana.
-            </p>
-          </div>
-
-          <div className="relative w-full h-auto bg-white rounded-lg overflow-hidden">
-            <Image
-              src="/assets/mapa.png"
-              alt="Mapa de estacionamientos ProPark"
-              width={600}
-              height={450}
-              className="w-full h-auto object-contain"
-              priority
-            />
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
