@@ -47,9 +47,9 @@ export default function Carousel() {
             <Image
               src="/logo estatico.png"
               alt="ProPark Logo"
-              width={250}
-              height={80}
-              className="h-16 md:h-20 lg:h-24 w-auto"
+              width={350}
+              height={112}
+              className="h-20 md:h-24 lg:h-28 w-auto"
             />
           </div>
           <p className="max-w-2xl text-sm md:text-base text-white leading-relaxed">
@@ -96,26 +96,33 @@ export default function Carousel() {
         </div>
 
         {/* Cajas de estadísticas */}
-        <div className="mt-12 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Estacionamientos Activos
+        <div className="mt-12 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-md shadow-md p-4 h-32 flex flex-col justify-center">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight">
+              Años de experiencia en el mercado
             </h3>
-            <p className="text-gray-600">Estados con servicio</p>
+            <p className="text-sm text-gray-600">Liderando la innovación</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Capacidad Total
+          <div className="bg-white rounded-md shadow-md p-4 h-32 flex flex-col justify-center">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight">
+              Número de estacionamiento en operación
             </h3>
-            <p className="text-gray-600">Lugares disponibles</p>
+            <p className="text-sm text-gray-600">Ubicaciones estratégicas</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Tecnología
+          <div className="bg-white rounded-md shadow-md p-4 h-32 flex flex-col justify-center">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight">
+              Cantidad de colaboradores
             </h3>
-            <p className="text-gray-600">Sistemas inteligentes</p>
+            <p className="text-sm text-gray-600">Equipo especializado</p>
+          </div>
+
+          <div className="bg-white rounded-md shadow-md p-4 h-32 flex flex-col justify-center">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight">
+              Cantidad de cajones en operación
+            </h3>
+            <p className="text-sm text-gray-600">Espacios disponibles</p>
           </div>
         </div>
       </div>

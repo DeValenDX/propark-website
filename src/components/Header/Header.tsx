@@ -26,13 +26,13 @@ export const Header = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <Link href="/">
-              <div className="flex items-center h-14">
+              <div className="flex items-center h-20">
                 <Image
                   src="/logo estatico.png"
                   alt="ProPark Logo"
-                  width={200}
-                  height={56}
-                  className="h-14 w-auto"
+                  width={280}
+                  height={80}
+                  className="h-20 w-auto"
                   priority
                 />
               </div>
