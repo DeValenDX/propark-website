@@ -17,14 +17,12 @@ export default function HeroCarousel() {
 		if (isTransitioning) return;
 		setIsTransitioning(true);
 		setCurrentSlide((prev) => (prev + 1) % slides.length);
-		setTimeout(() => setIsTransitioning(false), TRANSITION_DURATION);
 	}, [isTransitioning]);
 
 	const prevSlide = useCallback(() => {
 		if (isTransitioning) return;
 		setIsTransitioning(true);
 		setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-		setTimeout(() => setIsTransitioning(false), TRANSITION_DURATION);
 	}, [isTransitioning]);
 
 	const goToSlide = useCallback(
@@ -32,10 +30,25 @@ export default function HeroCarousel() {
 			if (isTransitioning || index === currentSlide) return;
 			setIsTransitioning(true);
 			setCurrentSlide(index);
-			setTimeout(() => setIsTransitioning(false), TRANSITION_DURATION);
 		},
 		[currentSlide, isTransitioning]
 	);
+
+	// Effect para manejar la duración de la transición
+	useEffect(() => {
+		if (!isTransitioning) return;
+
+		const startTime = Date.now();
+		const checkTransition = () => {
+			if (Date.now() - startTime >= TRANSITION_DURATION) {
+				setIsTransitioning(false);
+			} else {
+				requestAnimationFrame(checkTransition);
+			}
+		};
+		
+		requestAnimationFrame(checkTransition);
+	}, [isTransitioning]);
 
 	useEffect(() => {
 		if (!isAutoplay || isPaused) return;

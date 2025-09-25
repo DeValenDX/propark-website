@@ -28,11 +28,11 @@ export const Header = () => {
             <Link href="/">
               <div className="flex items-center h-20">
                 <Image
-                  src="/logo estatico.png"
+                  src="/logo estatico.png?v=2"
                   alt="ProPark Logo"
-                  width={280}
-                  height={80}
-                  className="h-20 w-auto"
+                  width={800}
+                  height={267}
+                  className="h-36 w-auto"
                   priority
                 />
               </div>

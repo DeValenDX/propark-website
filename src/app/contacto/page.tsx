@@ -1,6 +1,90 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import SuccessMessage from "@/components/forms/SuccessMessage";
+import SendButton from "@/components/Buttons/Send";
+import MathCaptcha from "@/components/forms/MathCaptcha";
 
 export default function Contact() {
+	const [formData, setFormData] = useState({
+		nombre: "",
+		correo: "",
+		asunto: "",
+		mensaje: "",
+	});
+	const [isLoading, setIsLoading] = useState(false);
+	const [message, setMessage] = useState({ type: "", text: "" });
+	const [isSuccess, setIsSuccess] = useState(false);
+	const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		const { name, value } = e.target;
+		setFormData(prev => ({
+			...prev,
+			[name]: value,
+		}));
+		// Limpiar mensaje cuando el usuario empiece a escribir
+		if (message.text) setMessage({ type: "", text: "" });
+	};
+
+	const handleLoadingComplete = () => {
+		setIsSuccess(true);
+		// Limpiar formulario
+		setFormData({
+			nombre: "",
+			correo: "",
+			asunto: "",
+			mensaje: "",
+		});
+		setIsLoading(false);
+	};
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		
+		// Validar CAPTCHA
+		if (!isCaptchaVerified) {
+			setMessage({
+				type: "error",
+				text: "Por favor, completa la verificación de seguridad.",
+			});
+			return;
+		}
+
+		setIsLoading(true);
+		setMessage({ type: "", text: "" });
+
+		try {
+			const response = await fetch("/api", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			});
+
+			const data = await response.json();
+
+			if (response.ok) {
+				// El loader se encarga de mostrar el éxito después de 4 segundos
+				// No llamamos setIsSuccess aquí, lo hace handleLoadingComplete
+			} else {
+				setIsLoading(false);
+				setMessage({
+					type: "error",
+					text: data.error || "Error al enviar el mensaje. Por favor, intenta nuevamente.",
+				});
+			}
+		} catch {
+			setIsLoading(false);
+			setMessage({
+				type: "error",
+				text: "Error de conexión. Por favor, verifica tu internet e intenta nuevamente.",
+			});
+		}
+	};
+
 	return (
 		<section className="min-h-screen w-screen">
 			<div className="relative w-full h-96 flex items-center justify-center">
@@ -44,7 +128,7 @@ export default function Contact() {
 			</div>
 
 			<div className="flex flex-1 items-center justify-center py-16 px-10 bg-gray-50">
-				<div className="w-full  grid grid-cols-1 md:grid-cols-2 bg-white rounded-2xl shadow-xl overflow-hidden">
+				<div className="w-full grid grid-cols-1 md:grid-cols-2 bg-white rounded-2xl shadow-xl overflow-hidden">
 					<div className="relative text-white p-8 flex flex-col justify-center">
 						<Image
 							src="/assets/urban.jpg"
@@ -87,21 +171,43 @@ export default function Contact() {
 						<h2 className="text-2xl font-bold text-gray-800 mb-6">
 							Escribenos
 						</h2>
-						<form className="space-y-4">
+
+						{/* Estado de éxito */}
+						{isSuccess ? (
+							<SuccessMessage
+								title="Tu mensaje fue enviado con éxito"
+								subtitle="Gracias por contactarnos. Te responderemos pronto."
+								buttonText="Enviar otro mensaje"
+								onButtonClick={() => setIsSuccess(false)}
+							/>
+						) : (
+							<>
+								{/* Mensaje de error */}
+								{message.text && message.type === "error" && (
+									<div className="mb-4 p-4 rounded-lg bg-red-50 text-red-800 border border-red-200">
+										{message.text}
+									</div>
+								)}
+
+								<form onSubmit={handleSubmit} className="space-y-4">
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 								<div className="flex flex-col">
 									<label
 										htmlFor="nombre"
 										className="mb-1 text-sm text-gray-700 font-medium"
 									>
-										Nombre
+										Nombre *
 									</label>
 									<input
 										id="nombre"
+										name="nombre"
 										type="text"
+										value={formData.nombre}
+										onChange={handleInputChange}
 										placeholder="Ingresa tu nombre completo"
-										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
+										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none focus:border-[#00d4ff]"
 										required
+										disabled={isLoading}
 									/>
 								</div>
 								<div className="flex flex-col">
@@ -109,14 +215,18 @@ export default function Contact() {
 										htmlFor="correo"
 										className="mb-1 text-sm text-gray-700 font-medium"
 									>
-										Correo electrónico
+										Correo electrónico *
 									</label>
 									<input
 										id="correo"
+										name="correo"
 										type="email"
+										value={formData.correo}
+										onChange={handleInputChange}
 										placeholder="ejemplo@correo.com"
-										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
+										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none focus:border-[#00d4ff]"
 										required
+										disabled={isLoading}
 									/>
 								</div>
 							</div>
@@ -125,14 +235,18 @@ export default function Contact() {
 									htmlFor="asunto"
 									className="mb-1 text-sm text-gray-700 font-medium"
 								>
-									Asunto
+									Asunto *
 								</label>
 								<input
 									id="asunto"
+									name="asunto"
 									type="text"
+									value={formData.asunto}
+									onChange={handleInputChange}
 									placeholder="¿Sobre qué quieres contactarnos?"
-									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
+									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none focus:border-[#00d4ff]"
 									required
+									disabled={isLoading}
 								/>
 							</div>
 							<div className="flex flex-col">
@@ -140,23 +254,33 @@ export default function Contact() {
 									htmlFor="mensaje"
 									className="mb-1 text-sm text-gray-700 font-medium"
 								>
-									Mensaje
+									Mensaje *
 								</label>
 								<textarea
 									id="mensaje"
+									name="mensaje"
+									value={formData.mensaje}
+									onChange={handleInputChange}
 									placeholder="Escribe tu mensaje aquí"
 									rows={4}
-									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
+									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none focus:border-[#00d4ff]"
 									required
+									disabled={isLoading}
 								></textarea>
 							</div>
-							<button
-								type="submit"
-								className="bg-gradient-to-r from-[#00d4ff] to-[#0099ff] text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:scale-105 transform transition"
-							>
-								Enviar
-							</button>
-						</form>
+							
+							{/* CAPTCHA */}
+							<MathCaptcha onVerify={setIsCaptchaVerified} />
+							
+                                                                        <SendButton
+                                                                        isLoading={isLoading}
+                                                                        onLoadingComplete={handleLoadingComplete}
+                                                                        buttonText="Enviar"
+                                                                        duration={4000}
+                                                                        />
+							</form>
+							</>
+						)}
 					</div>
 				</div>
 			</div>

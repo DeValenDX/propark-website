@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import companiesData from "../../app/utils/companies.json";
+import { useSpring, animated } from '@react-spring/web';
 
 const styles = {
   scroll: `
@@ -23,6 +24,25 @@ const styles = {
 
 export default function Carousel() {
   const companies = companiesData?.companies ?? [];
+
+  // Animaciones para la sección de bienvenida
+  const titleAnim = useSpring({
+    from: { opacity: 0, transform: 'translateY(-30px)' },
+    to: { opacity: 1, transform: 'translateY(0px)' },
+    delay: 200,
+  });
+
+  const logoAnim = useSpring({
+    from: { opacity: 0, transform: 'translateY(-20px)' },
+    to: { opacity: 1, transform: 'translateY(0px)' },
+    delay: 800,
+  });
+
+  const textAnim = useSpring({
+    from: { opacity: 0, transform: 'translateY(-20px)' },
+    to: { opacity: 1, transform: 'translateY(0px)' },
+    delay: 1200,
+  });
   const loop = [...companies, ...companies];
 
   useEffect(() => {
@@ -40,19 +60,19 @@ export default function Carousel() {
       {/* Sección Hero */}
       <section className="h-[70vh] bg-gradient-to-b from-[#008FBE] to-[#006d94] flex flex-col justify-center items-center text-center px-6">
         <div className="flex flex-col items-center w-full max-w-4xl mx-auto">
-          <h1 className="text-white text-3xl md:text-5xl font-bold mb-4 leading-tight">
+          <animated.h1 style={titleAnim} className="text-white text-3xl md:text-5xl font-bold mb-4 leading-tight">
             Bienvenido a la nueva era <br /> de la movilidad urbana
-          </h1>
-          <div className="flex items-center justify-center mb-6">
+          </animated.h1>
+          <animated.div style={logoAnim} className="flex items-center justify-center mb-6">
             <Image
-              src="/logo estatico.png"
+              src="/logo estatico.png?v=2"
               alt="ProPark Logo"
-              width={350}
-              height={112}
-              className="h-20 md:h-24 lg:h-28 w-auto"
+              width={800}
+              height={256}
+              className="h-40 md:h-44 lg:h-48 w-auto"
             />
-          </div>
-          <p className="max-w-2xl text-sm md:text-base text-white leading-relaxed">
+          </animated.div>
+          <animated.p style={textAnim} className="max-w-2xl text-sm md:text-base text-white leading-relaxed">
             En <span className="font-semibold">Pro Park</span> somos
             especialistas en la <span className="font-semibold">gestión</span> y{" "}
             <span className="font-semibold">operación eficiente</span> de
@@ -63,7 +83,7 @@ export default function Carousel() {
             </span>
             , optimizando cada espacio y brindando tranquilidad a nuestros
             clientes.
-          </p>
+          </animated.p>
         </div>
       </section>
 
@@ -92,6 +112,15 @@ export default function Carousel() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Disclaimer text */}
+        <div className="w-full py-4 px-6 mt-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-base text-[#434343] leading-relaxed font-bold">
+              Las marcas y logotipos citados en este sitio son para fines informativos, sin fines de lucro y son prioridad de sus respectivos dueños.
+            </p>
           </div>
         </div>
 
