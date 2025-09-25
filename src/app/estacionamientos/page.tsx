@@ -77,16 +77,6 @@ export default function WhoWeAre() {
 							<div className="w-2/3 h-2/3 rounded-full bg-white/30 blur-2xl opacity-70 animate-pulse" />
 						</div>
 						
-						{/* Marca de agua con el icono PP */}
-						<div className="absolute top-4 right-4 z-20">
-							<Image
-								src="/map-icons/PP.jpg"
-								alt="ProPark Logo"
-								width={80}
-								height={80}
-								className="rounded-lg shadow-lg opacity-80 hover:opacity-100 transition-opacity duration-300"
-							/>
-						</div>
 					</div>
 				</div>
 			</div>
