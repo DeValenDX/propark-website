@@ -127,31 +127,40 @@ export default function Carousel() {
         {/* Cajas de estadísticas */}
         <div className="mt-12 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-md shadow-md p-4 h-32 flex flex-col justify-center">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight">
-              Años de experiencia en el mercado
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight text-center">
+              AÑOS DE EXPERIENCIA EN EL MERCADO
             </h3>
-            <p className="text-sm text-gray-600">Liderando la innovación</p>
+            <p className="text-sm text-gray-600 text-center">Liderando la innovación</p>
           </div>
 
           <div className="bg-white rounded-md shadow-md p-4 h-32 flex flex-col justify-center">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight">
-              Número de estacionamiento en operación
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight text-center">
+              ESTACIONAMIENTO EN OPERACIÓN
             </h3>
-            <p className="text-sm text-gray-600">Ubicaciones estratégicas</p>
+            <div className="text-center">
+              <p className="text-2xl font-bold text-gray-900 mb-1">91</p>
+              <p className="text-sm text-gray-600">Ubicaciones estratégicas</p>
+            </div>
           </div>
 
           <div className="bg-white rounded-md shadow-md p-4 h-32 flex flex-col justify-center">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight">
-              Cantidad de colaboradores
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight text-center">
+              CANTIDAD DE COLABORADORES
             </h3>
-            <p className="text-sm text-gray-600">Equipo especializado</p>
+            <div className="text-center">
+              <p className="text-2xl font-bold text-gray-900 mb-1">500</p>
+              <p className="text-sm text-gray-600">Equipo especializado</p>
+            </div>
           </div>
 
           <div className="bg-white rounded-md shadow-md p-4 h-32 flex flex-col justify-center">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight">
-              Cantidad de cajones en operación
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight text-center">
+              CAJONES EN OPERACIÓN
             </h3>
-            <p className="text-sm text-gray-600">Espacios disponibles</p>
+            <div className="text-center">
+              <p className="text-2xl font-bold text-gray-900 mb-1">43,414</p>
+              <p className="text-sm text-gray-600">Espacios disponibles</p>
+            </div>
           </div>
         </div>
       </div>
