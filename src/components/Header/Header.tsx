@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import MarcaRegistrada from "../MarcaRegistrada/MarcaRegistrada";
 
 const menuItems = [
   { name: "Inicio", href: "/" },
@@ -26,7 +27,7 @@ export const Header = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <Link href="/">
-              <div className="flex items-center h-20">
+              <div className="flex items-center h-20 gap-2">
                 <Image
                   src="/logo estatico.png"
                   alt="ProPark Logo"
@@ -35,6 +36,7 @@ export const Header = () => {
                   className="h-20 w-auto"
                   priority
                 />
+                <MarcaRegistrada size="md" />
               </div>
             </Link>
           </div>

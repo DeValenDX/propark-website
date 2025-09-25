@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import companiesData from "../../app/utils/companies.json";
+import MarcaRegistrada from "../MarcaRegistrada/MarcaRegistrada";
 
 const styles = {
   scroll: `
@@ -43,7 +44,7 @@ export default function Carousel() {
           <h1 className="text-white text-3xl md:text-5xl font-bold mb-4 leading-tight">
             Bienvenido a la nueva era <br /> de la movilidad urbana
           </h1>
-          <div className="flex items-center justify-center mb-6">
+          <div className="flex items-center justify-center mb-6 gap-3">
             <Image
               src="/logo estatico.png"
               alt="ProPark Logo"
@@ -51,6 +52,7 @@ export default function Carousel() {
               height={112}
               className="h-20 md:h-24 lg:h-28 w-auto"
             />
+            <MarcaRegistrada size="lg" />
           </div>
           <p className="max-w-2xl text-sm md:text-base text-white leading-relaxed">
             En <span className="font-semibold">Pro Park</span> somos
@@ -93,6 +95,17 @@ export default function Carousel() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Descargo de responsabilidad */}
+        <div className="text-center px-6 py-4">
+          <p className="text-base text-gray-600">
+            <strong>
+              Las marcas y logotipos citados en este sitio son para fines
+              informativos, sin fines de lucro y son propiedad de sus
+              respectivos dueños
+            </strong>
+          </p>
         </div>
 
         {/* Cajas de estadísticas */}

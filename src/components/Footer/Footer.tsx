@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import MarcaRegistrada from "../MarcaRegistrada/MarcaRegistrada";
 
 export const Footer = () => {
   return (
@@ -9,7 +10,7 @@ export const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Logo y descripción */}
             <div className="lg:col-span-1">
-              <div className="mb-4">
+              <div className="mb-4 flex items-center gap-2">
                 <Image
                   src="/logo estatico.png"
                   alt="ProPark Logo"
@@ -17,6 +18,7 @@ export const Footer = () => {
                   height={67}
                   className="h-16 w-auto"
                 />
+                <MarcaRegistrada size="sm" />
               </div>
               <p className="text-gray-300 text-sm leading-relaxed max-w-md">
                 La tecnología y el diseño son nuestro motor para perseguir la

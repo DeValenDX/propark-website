@@ -6,38 +6,51 @@ export default function Services() {
   return (
     <>
       <section className="min-h-screen w-screen pb-32">
-        <div className="relative w-full h-96 flex items-center justify-center">
+        <div className="relative w-full h-96 group cursor-pointer overflow-hidden">
+          {/* Imagen de fondo completa */}
           <Image
             src="/services/services.png"
             alt="Servicios ProPark"
             fill
-            className="object-cover object-bottom"
+            className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-[#007DA8]/30" />
-          <div className="relative z-10 flex flex-col items-center justify-center">
-            <div>
-              <span className="relative text-5xl font-semibold text-white z-10">
-                [SERVICIOS]
-              </span>
-            </div>
-            <div className="flex items-center justify-center mt-4 px-4">
-              <span className="text-white text-center max-w-2xl text-xl font-extralight">
-                Pro Park es una empresa mexicana creada por un grupo de
-                especialistas en gestión y operación eficiente de
-                estacionamientos en toda la República Mexicana, tenemos un alto
-                nivel de conocimiento del negocio, lo que garantiza a nuestros
-                clientes grandes resultados.
-              </span>
-            </div>
 
-            <div className="flex justify-center items-center mt-6 space-x-4 z-10">
-              <Link href="/servicios">
-                <button className="bg-[#0090c1] text-xl text-white px-6 py-2 rounded-xl shadow-lg hover:bg-[#0077a8] hover:scale-105 transition-all duration-200 font-semibold tracking-wide focus:outline-none focus:ring-2 focus:ring-[#0090c1]/50 cursor-pointer">
-                  VER SERVICIOS
-                </button>
-              </Link>
+          {/* Gradiente diagonal de transición */}
+          <div
+            className="absolute inset-0 transition-all duration-500"
+            style={{
+              background:
+                "linear-gradient(135deg, transparent 0%, transparent 40%, rgba(0, 125, 168, 0.3) 60%, rgba(0, 143, 190, 0.8) 80%, rgba(0, 125, 168, 0.95) 100%)",
+            }}
+          />
+
+          {/* Contenido del lado derecho */}
+          <div className="absolute right-0 top-0 w-1/2 h-full flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center px-8">
+              <div>
+                <span className="relative text-4xl md:text-5xl font-semibold text-white z-10 transition-all duration-500 group-hover:text-5xl md:group-hover:text-6xl group-hover:drop-shadow-2xl">
+                  [SERVICIOS]
+                </span>
+              </div>
+              <div className="flex items-center justify-center mt-4">
+                <span className="text-white text-center max-w-lg text-lg md:text-xl font-extralight transition-all duration-500 group-hover:text-xl md:group-hover:text-2xl group-hover:font-light group-hover:drop-shadow-lg">
+                  Pro Park es una empresa mexicana creada por un grupo de
+                  especialistas en gestión y operación eficiente de
+                  estacionamientos en toda la República Mexicana, tenemos un
+                  alto nivel de conocimiento del negocio, lo que garantiza a
+                  nuestros clientes grandes resultados.
+                </span>
+              </div>
+
+              <div className="flex justify-center items-center mt-6 z-10">
+                <Link href="/servicios">
+                  <button className="bg-white/20 backdrop-blur-sm text-lg md:text-xl text-white px-6 py-3 rounded-xl shadow-lg hover:bg-white/30 hover:scale-110 transition-all duration-300 font-semibold tracking-wide focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer group-hover:shadow-2xl border border-white/30">
+                    VER SERVICIOS
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -149,7 +162,7 @@ export default function Services() {
                   Profesionalismo
                 </span>
                 <p className="absolute inset-0 flex items-center justify-center text-white text-base font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  Más de 200 colaboradores capacitados para atender las
+                  Más de 500 colaboradores capacitados para atender las
                   solicitudes de nuestros clientes.
                 </p>
               </div>
