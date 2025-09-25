@@ -11,11 +11,11 @@ export const Footer = () => {
             <div className="lg:col-span-1">
               <div className="mb-4">
                 <Image
-                  src="/logo estatico.png"
+                  src="/logo estatico.png?v=2"
                   alt="ProPark Logo"
-                  width={200}
-                  height={67}
-                  className="h-16 w-auto"
+                  width={500}
+                  height={167}
+                  className="h-32 w-auto"
                 />
               </div>
               <p className="text-gray-300 text-sm leading-relaxed max-w-md">
