@@ -1,7 +1,143 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
+import SuccessMessage from "@/components/forms/SuccessMessage";
+import SendButton from "@/components/Buttons/Send";
+import MathCaptcha from "@/components/forms/MathCaptcha";
 
 export default function JobBoard() {
+	const [formData, setFormData] = useState({
+		nombre: "",
+		correo: "",
+		telefono: "",
+		puesto: "",
+		experiencia: "",
+		cv: "",
+	});
+	const [isLoading, setIsLoading] = useState(false);
+	const [message, setMessage] = useState({ type: "", text: "" });
+	const [isSuccess, setIsSuccess] = useState(false);
+	const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+		const { name, value, files } = e.target as HTMLInputElement;
+		
+		if (name === 'cv' && files && files[0]) {
+			// Para archivos, guardamos el nombre del archivo
+			setFormData(prev => ({
+				...prev,
+				[name]: files[0].name,
+			}));
+		} else if (name === 'telefono') {
+			// Para teléfono, solo permitir números y máximo 10 dígitos
+			const numbersOnly = value.replace(/\D/g, '');
+			if (numbersOnly.length <= 10) {
+				setFormData(prev => ({
+					...prev,
+					[name]: numbersOnly,
+				}));
+			}
+		} else {
+			setFormData(prev => ({
+				...prev,
+				[name]: value,
+			}));
+		}
+		// Limpiar mensaje cuando el usuario empiece a escribir
+		if (message.text) setMessage({ type: "", text: "" });
+	};
+
+	const handleLoadingComplete = () => {
+		setIsSuccess(true);
+		// Limpiar formulario
+		setFormData({
+			nombre: "",
+			correo: "",
+			telefono: "",
+			puesto: "",
+			experiencia: "",
+			cv: "",
+		});
+		setIsLoading(false);
+	};
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		
+		// Validar CAPTCHA
+		if (!isCaptchaVerified) {
+			setMessage({
+				type: "error",
+				text: "Por favor, completa la verificación de seguridad.",
+			});
+			return;
+		}
+
+		setIsLoading(true);
+		setMessage({ type: "", text: "" });
+
+		// Validación adicional del teléfono
+		if (formData.telefono.length !== 10) {
+			setMessage({
+				type: "error",
+				text: "El teléfono debe tener exactamente 10 dígitos.",
+			});
+			setIsLoading(false);
+			return;
+		}
+
+		// Validación del archivo CV
+		const cvInput = document.getElementById('cv') as HTMLInputElement;
+		if (!cvInput.files || !cvInput.files[0]) {
+			setMessage({
+				type: "error",
+				text: "Debes subir tu CV (archivo PDF o Word).",
+			});
+			setIsLoading(false);
+			return;
+		}
+
+		try {
+			// Crear FormData para enviar archivos
+			const formDataToSend = new FormData();
+			formDataToSend.append('nombre', formData.nombre);
+			formDataToSend.append('correo', formData.correo);
+			formDataToSend.append('telefono', formData.telefono);
+			formDataToSend.append('puesto', formData.puesto);
+			formDataToSend.append('experiencia', formData.experiencia);
+			
+			// Agregar el archivo CV
+			const cvInput = document.getElementById('cv') as HTMLInputElement;
+			if (cvInput.files && cvInput.files[0]) {
+				formDataToSend.append('cv', cvInput.files[0]);
+			}
+
+			const response = await fetch("/api/jobs", {
+				method: "POST",
+				body: formDataToSend,
+			});
+
+			const data = await response.json();
+
+			if (response.ok) {
+				// El loader se encarga de mostrar el éxito después de 4 segundos
+				// No llamamos setIsSuccess aquí, lo hace handleLoadingComplete
+			} else {
+				setIsLoading(false);
+				setMessage({
+					type: "error",
+					text: data.error || "Error al enviar la solicitud. Por favor, intenta nuevamente.",
+				});
+			}
+		} catch {
+			setIsLoading(false);
+			setMessage({
+				type: "error",
+				text: "Error de conexión. Por favor, verifica tu internet e intenta nuevamente.",
+			});
+		}
+	};
 	return (
 		<section className="min-h-screen w-screen">
 			<div className="relative w-full h-96 flex items-center justify-center">
@@ -93,21 +229,43 @@ export default function JobBoard() {
 						<h2 className="text-2xl font-bold text-gray-800 mb-6">
 							¿Quieres trabajar con nosotros?
 						</h2>
-						<form className="space-y-4">
+
+						{/* Estado de éxito */}
+						{isSuccess ? (
+							<SuccessMessage
+								title="Tu solicitud fue enviada con éxito"
+								subtitle="Gracias por tu interés en trabajar con nosotros. Te contactaremos pronto."
+								buttonText="Enviar otra solicitud"
+								onButtonClick={() => setIsSuccess(false)}
+							/>
+						) : (
+							<>
+								{/* Mensaje de error */}
+								{message.text && message.type === "error" && (
+									<div className="mb-4 p-4 rounded-lg bg-red-50 text-red-800 border border-red-200">
+										{message.text}
+									</div>
+								)}
+
+								<form onSubmit={handleSubmit} className="space-y-4">
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 								<div className="flex flex-col">
 									<label
 										htmlFor="nombre"
 										className="mb-1 text-sm text-gray-700 font-medium"
 									>
-										Nombre<span className="text-red-500">*</span>
+										Nombre *
 									</label>
 									<input
 										id="nombre"
+										name="nombre"
 										type="text"
+										value={formData.nombre}
+										onChange={handleInputChange}
 										placeholder="Ingresa tu nombre completo"
-										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
+										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none focus:border-[#00d4ff]"
 										required
+										disabled={isLoading}
 									/>
 								</div>
 								<div className="flex flex-col">
@@ -115,29 +273,18 @@ export default function JobBoard() {
 										htmlFor="correo"
 										className="mb-1 text-sm text-gray-700 font-medium"
 									>
-										Correo<span className="text-red-500">*</span>
+										Correo electrónico *
 									</label>
 									<input
 										id="correo"
+										name="correo"
 										type="email"
+										value={formData.correo}
+										onChange={handleInputChange}
 										placeholder="ejemplo@correo.com"
-										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
+										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none focus:border-[#00d4ff]"
 										required
-									/>
-								</div>
-								<div className="flex flex-col">
-									<label
-										htmlFor="repetir-correo"
-										className="mb-1 text-sm text-gray-700 font-medium"
-									>
-										Repetir Correo<span className="text-red-500">*</span>
-									</label>
-									<input
-										id="repetir-correo"
-										type="email"
-										placeholder="Repite tu correo"
-										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
-										required
+										disabled={isLoading}
 									/>
 								</div>
 								<div className="flex flex-col">
@@ -145,93 +292,110 @@ export default function JobBoard() {
 										htmlFor="telefono"
 										className="mb-1 text-sm text-gray-700 font-medium"
 									>
-										Teléfono
+										Teléfono *
 									</label>
 									<input
 										id="telefono"
+										name="telefono"
 										type="tel"
-										placeholder="Tu número de teléfono"
-										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
+										value={formData.telefono}
+										onChange={handleInputChange}
+										placeholder="1234567890"
+										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none focus:border-[#00d4ff]"
+										required
+										disabled={isLoading}
+										maxLength={10}
+										pattern="[0-9]{10}"
 									/>
-								</div>
-								<div className="flex flex-col md:col-span-2">
-									<label
-										htmlFor="direccion"
-										className="mb-1 text-sm text-gray-700 font-medium"
-									>
-										Dirección (Calle y número)
-									</label>
-									<input
-										id="direccion"
-										type="text"
-										placeholder="Calle y número"
-										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
-									/>
+									<p className="text-xs text-gray-500 mt-1">
+										10 dígitos exactos (solo números)
+									</p>
 								</div>
 								<div className="flex flex-col">
 									<label
-										htmlFor="colonia"
+										htmlFor="puesto"
 										className="mb-1 text-sm text-gray-700 font-medium"
 									>
-										Colonia
+										Puesto de interés *
 									</label>
-									<input
-										id="colonia"
-										type="text"
-										placeholder="Colonia"
-										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
-									/>
+									<select
+										id="puesto"
+										name="puesto"
+										value={formData.puesto}
+										onChange={handleInputChange}
+										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none focus:border-[#00d4ff]"
+										required
+										disabled={isLoading}
+									>
+										<option value="">Selecciona un puesto</option>
+										<option value="Operador de Estacionamiento">Operador de Estacionamiento</option>
+										<option value="Supervisor">Supervisor</option>
+										<option value="Gerente de Operaciones">Gerente de Operaciones</option>
+										<option value="Atención al Cliente">Atención al Cliente</option>
+										<option value="Mantenimiento">Mantenimiento</option>
+										<option value="Seguridad">Seguridad</option>
+										<option value="Administrativo">Administrativo</option>
+										<option value="Otro">Otro</option>
+									</select>
 								</div>
 								<div className="flex flex-col">
 									<label
-										htmlFor="delegacion"
+										htmlFor="experiencia"
 										className="mb-1 text-sm text-gray-700 font-medium"
 									>
-										Delegación/Municipio
+										Años de experiencia
 									</label>
-									<input
-										id="delegacion"
-										type="text"
-										placeholder="Delegación o municipio"
-										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
-									/>
-								</div>
-								<div className="flex flex-col md:col-span-2">
-									<label
-										htmlFor="cp"
-										className="mb-1 text-sm text-gray-700 font-medium"
+									<select
+										id="experiencia"
+										name="experiencia"
+										value={formData.experiencia}
+										onChange={handleInputChange}
+										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none focus:border-[#00d4ff]"
+										disabled={isLoading}
 									>
-										C.P.
-									</label>
-									<input
-										id="cp"
-										type="text"
-										placeholder="Código Postal"
-										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
-									/>
+										<option value="">Selecciona tu experiencia</option>
+										<option value="Sin experiencia">Sin experiencia</option>
+										<option value="1-2 años">1-2 años</option>
+										<option value="3-5 años">3-5 años</option>
+										<option value="6-10 años">6-10 años</option>
+										<option value="Más de 10 años">Más de 10 años</option>
+									</select>
 								</div>
 								<div className="flex flex-col md:col-span-2">
 									<label
 										htmlFor="cv"
 										className="mb-1 text-sm text-gray-700 font-medium"
 									>
-										Envíanos tu CV:
+										Subir CV (PDF o Word) *
 									</label>
 									<input
 										id="cv"
+										name="cv"
 										type="file"
-										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none bg-white"
+										onChange={handleInputChange}
+										className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none focus:border-[#00d4ff] bg-white"
 										accept=".pdf,.doc,.docx"
+										required
+										disabled={isLoading}
 									/>
+									<p className="text-xs text-gray-500 mt-1">
+										Formatos permitidos: PDF, DOC, DOCX (máximo 5MB) - Campo obligatorio
+									</p>
 								</div>
 							</div>
-							<button
-								type="submit"
-								className="bg-gradient-to-r from-[#00d4ff] to-[#0099ff] text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:scale-105 transform transition"
-							>
-								Enviar
-							</button>
-						</form>
+							
+							{/* CAPTCHA */}
+							<MathCaptcha onVerify={setIsCaptchaVerified} />
+							
+							<SendButton
+								isLoading={isLoading}
+								onLoadingComplete={handleLoadingComplete}
+								buttonText="Enviar"
+								duration={4000}
+							/>
+							</form>
+							</>
+						)}
 					</div>
 				</div>
 			</div>
