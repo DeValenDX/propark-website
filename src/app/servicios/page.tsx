@@ -149,7 +149,7 @@ export default function Services() {
                   Profesionalismo
                 </span>
                 <p className="absolute inset-0 flex items-center justify-center text-white text-base font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  Más de 200 colaboradores capacitados para atender las
+                  Más de 500 colaboradores capacitados para atender las
                   solicitudes de nuestros clientes.
                 </p>
               </div>
