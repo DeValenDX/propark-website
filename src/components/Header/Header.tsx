@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const menuItems = [
   { name: "Inicio", href: "/" },
@@ -16,9 +17,17 @@ const menuItems = [
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
+
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/" || pathname === "/welcome";
+    }
+    return pathname === `/${href}`;
+  };
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-100 pt-6 pb-4">
@@ -45,7 +54,9 @@ export const Header = () => {
                 key={item.name}
                 href={item.href}
                 scroll={false}
-                className="text-[#008FBE] hover:text-[#006d94] transition-colors duration-200 font-medium cursor-pointer"
+                className={`text-[#008FBE] hover:text-[#006d94] transition-colors duration-200 font-medium cursor-pointer relative ${
+                  isActive(item.href) ? "border-b-2 border-[#008FBE] pb-1" : ""
+                }`}
               >
                 {item.name}
               </Link>
@@ -97,7 +108,9 @@ export const Header = () => {
                   closeMenu();
                 }
               }}
-              className="block w-full text-left px-3 py-2 text-[#008FBE] hover:text-[#006d94] hover:bg-gray-50 rounded-md text-base font-medium cursor-pointer transition-colors duration-200"
+              className={`block w-full text-left px-3 py-2 text-[#008FBE] hover:text-[#006d94] hover:bg-gray-50 rounded-md text-base font-medium cursor-pointer transition-colors duration-200 ${
+                isActive(item.href) ? "bg-blue-50 border-l-4 border-[#008FBE]" : ""
+              }`}
             >
               {item.name}
             </button>
