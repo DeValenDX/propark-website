@@ -62,17 +62,17 @@ export default function WhoWeAre() {
 				<div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-gray-800/70 flex flex-col items-center justify-center">
 					<div>
 						<span className="relative text-5xl font-semibold text-white z-10">
-							[QUIÉNES SOMOS]
+							QUIÉNES SOMOS
 						</span>
 					</div>
 					<div className="flex items-center justify-center mt-4 px-4">
 						<span className="text-white text-center max-w-2xl text-xl font-extralight">
-							<span className=" font-bold">ProPark</span> es una empresa
-							mexicana creada por un grupo de especialistas en gestión y
-							operación eficiente de estacionamientos en toda la República
-							Mexicana, tenemos un alto nivel de conocimiento del negocio, lo
-							que garantiza a nuestros clientes grandes resultados.
+							<span className="font-bold text-cyan-400">ProPark</span> es una <span className="font-bold text-cyan-400">empresa mexicana</span> creada por un grupo de
+							<span className="font-bold text-cyan-400">especialistas</span> en <span className="font-bold text-cyan-400">gestión y operación eficiente</span> de estacionamientos en toda la
+							<span className="font-bold text-cyan-400">República Mexicana</span>, con un alto nivel de conocimiento del negocio, lo que garantiza a nuestros clientes
+							<span className="font-bold text-cyan-400">grandes resultados</span>.
 						</span>
+
 					</div>
 
 					<div className="flex justify-center items-center mt-6 space-x-4 z-10">
