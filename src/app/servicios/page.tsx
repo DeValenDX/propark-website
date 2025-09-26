@@ -14,7 +14,7 @@ export default function Services() {
 							src="/assets/servicios-camioneta.png"
 							alt="Imagen de estacionamiento"
 							fill
-							className="object-cover object-center rounded-lg"
+							className="object-cover object-center rounded-lg bg-gradient-to-b from-gray-900/70 to-gray-800/70"
 							priority
 							sizes="50vw"
 							placeholder="blur"
@@ -24,7 +24,7 @@ export default function Services() {
 					</div>
 
 					{/* Texto */}
-					<div className="w-1/2 flex flex-col justify-center items-center px-8 bg-gradient-to-b from-gray-900/90 to-gray-800/70">
+					<div className="w-1/2 flex flex-col justify-center items-center px-8 bg-gradient-to-b from-gray-700/90 to-gray-600/70">
 						<span className="text-5xl font-semibold text-white mb-6">SERVICIOS</span>
 						<span className="text-white text-center max-w-xl text-xl font-extralight">
 							<span className="font-bold text-cyan-400">Pro Park</span> es una
@@ -37,15 +37,7 @@ export default function Services() {
 
 				</div>
 
-				{/* <div className="relative w-full h-96 flex items-center justify-center">
-					
-					
-					<div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-gray-800/70 flex flex-col items-center justify-center">
-						
 
-					</div>
-					
-				</div> */}
 				<div className="flex items-center justify-center mt-12 mb-8 text-4xl font-semibold text-gray-800 flex-col gap-4">
 					<div className="flex flex-col items-center mb-4">
 						<span className="uppercase tracking-widest text-cyan-700 font-bold text-3xl mb-1">
@@ -161,7 +153,7 @@ export default function Services() {
 						</div>
 
 						{/* Card 3 */}
-						<div className="flex-1 relative group overflow-hidden flex items-center justify-center  bg-[url('/assets/experiencia.jpg')] bg-cover bg-center  transition-transform duration-300 hover:-translate-y-3 hover:scale-105">
+						<div className="flex-1 relative group overflow-hidden flex items-center justify-center  bg-[url('/assets/pexels-pixabay-63294.jpg')] bg-cover bg-center  transition-transform duration-300 hover:-translate-y-3 hover:scale-105">
 							<div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/70 to-transparent" />
 							<div className="relative z-10 text-center px-4">
 								<span className="text-2xl font-bold text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
