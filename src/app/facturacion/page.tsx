@@ -8,6 +8,7 @@ import { useState } from "react";
 export default function Invoices() {
 	const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
 	const [message, setMessage] = useState({ type: "", text: "" });
+	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
@@ -33,9 +34,27 @@ export default function Invoices() {
 			// Actualizar el valor limpio
 			e.target.value = cleanValue;
 		}
+		
+		// Validación para RFC: máximo 13 caracteres
+		if (name === 'rfc') {
+			if (value.length > 13) {
+				e.target.value = value.substring(0, 13);
+			}
+		}
+		
+		// Validación para código postal: solo números, máximo 5
+		if (name === 'codigo_postal') {
+			// Solo permitir números
+			let cleanValue = value.replace(/[^0-9]/g, '');
+			// Limitar a 5 caracteres
+			if (cleanValue.length > 5) {
+				cleanValue = cleanValue.substring(0, 5);
+			}
+			e.target.value = cleanValue;
+		}
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		
 		// Validar CAPTCHA
@@ -47,11 +66,53 @@ export default function Invoices() {
 			return;
 		}
 
-		// Si el CAPTCHA es válido, proceder con el envío
-		setMessage({
-			type: "success",
-			text: "Solicitud de facturación enviada correctamente.",
-		});
+		// Crear FormData con todos los campos del formulario
+		const formData = new FormData(e.target as HTMLFormElement);
+		const rfc = formData.get('rfc') as string;
+		const codigoPostal = formData.get('codigo_postal') as string;
+
+		// Validar RFC
+		if (!rfc || rfc.length < 1 || rfc.length > 13) {
+			setMessage({
+				type: "error",
+				text: "El RFC debe tener entre 1 y 13 caracteres.",
+			});
+			return;
+		}
+
+		// Validar código postal
+		if (!codigoPostal || codigoPostal.length !== 5 || !/^[0-9]{5}$/.test(codigoPostal)) {
+			setMessage({
+				type: "error",
+				text: "El código postal debe tener exactamente 5 dígitos numéricos.",
+			});
+			return;
+		}
+		
+		try {
+			// Enviar datos a la API
+			const response = await fetch('/api/facturacion', {
+				method: 'POST',
+				body: formData,
+			});
+
+			if (response.ok) {
+				// Éxito: mostrar mensaje de agradecimiento
+				setIsFormSubmitted(true);
+			} else {
+				// Error: mostrar mensaje de error
+				const errorData = await response.json();
+				setMessage({
+					type: "error",
+					text: errorData.error || "Error al enviar la solicitud. Por favor, intenta nuevamente.",
+				});
+			}
+		} catch (error) {
+			setMessage({
+				type: "error",
+				text: "Error de conexión. Por favor, verifica tu internet e intenta nuevamente.",
+			});
+		}
 	};
 
 	return (
@@ -106,17 +167,56 @@ export default function Invoices() {
 			</div>
 
 			<div className="flex flex-1 items-center justify-center py-8 px-8 bg-gray-50">
-				<div className="w-full  bg-white rounded-2xl shadow-xl overflow-hidden p-8">
-					<h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-						Formulario de facturación
-					</h2>
-					<form onSubmit={handleSubmit} className="space-y-6">
+				<div className="w-full bg-white rounded-2xl shadow-xl overflow-hidden p-8 relative">
+					{/* Marca de agua de fondo - solo se muestra si no se ha enviado el formulario */}
+					{!isFormSubmitted && (
+						<div className="absolute inset-0 opacity-15 pointer-events-none">
+							<Image
+								src="/map-icons/PP.jpg"
+								alt="Marca de agua ProPark"
+								fill
+								className="object-contain"
+								priority
+							/>
+						</div>
+					)}
+					
+					{/* Mostrar mensaje de éxito o formulario */}
+					{isFormSubmitted ? (
+						<div className="text-center py-12">
+							<div className="mb-8">
+								<Image
+									src="/logo estatico.png"
+									alt="ProPark Logo"
+									width={400}
+									height={133}
+									className="mx-auto h-32 w-auto"
+									priority
+								/>
+							</div>
+							<h2 className="text-3xl font-bold text-gray-800 mb-4">
+								¡Muchas gracias!
+							</h2>
+							<p className="text-xl text-gray-600 mb-6">
+								Tu factura será enviada pronto
+							</p>
+							<p className="text-gray-500">
+								Recibirás un correo electrónico con tu factura en formato PDF y XML.
+							</p>
+						</div>
+					) : (
+						<>
+							<h2 className="text-2xl font-bold text-gray-800 mb-6 text-center relative z-10">
+								Formulario de facturación
+							</h2>
+							<form onSubmit={handleSubmit} className="space-y-6 relative z-10">
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 							<div>
 								<label className="block text-sm font-medium text-gray-700">
 									Estacionamiento<span className="text-red-500">*</span>
 								</label>
 								<select
+									name="estacionamiento"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								>
@@ -197,6 +297,7 @@ export default function Invoices() {
 								</label>
 								<input
 									type="text"
+									name="no_recibo"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								/>
@@ -207,6 +308,7 @@ export default function Invoices() {
 								</label>
 								<input
 									type="date"
+									name="fecha"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								/>
@@ -219,10 +321,13 @@ export default function Invoices() {
 									<span className="text-red-500">*</span>
 								</label>
 								<select
+									name="persona_fisica_moral"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								>
-									<option value="">-</option>
+									<option value="">Selecciona una opción</option>
+									<option value="Persona Física">Persona Física</option>
+									<option value="Persona Moral">Persona Moral</option>
 								</select>
 							</div>
 							<div>
@@ -231,8 +336,13 @@ export default function Invoices() {
 								</label>
 								<input
 									type="text"
+									name="rfc"
+									onChange={handleInputChange}
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
+									minLength={1}
+									maxLength={13}
+									title="Ingresa un RFC válido (mínimo 1, máximo 13 caracteres)"
 								/>
 							</div>
 						</div>
@@ -243,6 +353,7 @@ export default function Invoices() {
 								</label>
 								<input
 									type="text"
+									name="razon_social"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								/>
@@ -253,6 +364,7 @@ export default function Invoices() {
 								</label>
 								<input
 									type="email"
+									name="correo"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								/>
@@ -265,6 +377,7 @@ export default function Invoices() {
 								</label>
 								<input
 									type="email"
+									name="repetir_correo"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								/>
@@ -330,8 +443,13 @@ export default function Invoices() {
 								</label>
 								<input
 									type="text"
+									name="codigo_postal"
+									onChange={handleInputChange}
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
+									pattern="[0-9]{5}"
+									title="Ingresa un código postal válido de 5 dígitos"
+									maxLength={5}
 								/>
 							</div>
 							<div>
@@ -339,10 +457,12 @@ export default function Invoices() {
 									País<span className="text-red-500">*</span>
 								</label>
 								<select
+									name="pais"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								>
-									<option value="">-</option>
+									<option value="">Selecciona un país</option>
+									<option value="México">México</option>
 								</select>
 							</div>
 							<div>
@@ -350,10 +470,33 @@ export default function Invoices() {
 									Forma de pago<span className="text-red-500">*</span>
 								</label>
 								<select
+									name="forma_pago"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								>
-									<option value="">-</option>
+									<option value="">Selecciona una forma de pago</option>
+									<option value="01 - EFECTIVO">01 - EFECTIVO</option>
+									<option value="02 - CHEQUE NOMINATIVO">02 - CHEQUE NOMINATIVO</option>
+									<option value="03 - TRANSFERENCIA ELECTRÓNICA DE FONDOS">03 - TRANSFERENCIA ELECTRÓNICA DE FONDOS</option>
+									<option value="04 - TARJETA DE CREDITO">04 - TARJETA DE CREDITO</option>
+									<option value="05 - MONEDERO ELECTRÓNICO">05 - MONEDERO ELECTRÓNICO</option>
+									<option value="06 - DINERO ELECTRÓNICO">06 - DINERO ELECTRÓNICO</option>
+									<option value="08 - VALES DE DESPENSA">08 - VALES DE DESPENSA</option>
+									<option value="12 - DACIÓN EN PAGO">12 - DACIÓN EN PAGO</option>
+									<option value="13 - PAGO POR SUBROGACIÓN">13 - PAGO POR SUBROGACIÓN</option>
+									<option value="14 - PAGO POR CONSIGNACIÓN">14 - PAGO POR CONSIGNACIÓN</option>
+									<option value="15 - CONDONACIÓN">15 - CONDONACIÓN</option>
+									<option value="17 - COMPENSACIÓN">17 - COMPENSACIÓN</option>
+									<option value="23 - NOVACIÓN">23 - NOVACIÓN</option>
+									<option value="24 - CONFUSIÓN">24 - CONFUSIÓN</option>
+									<option value="25 - REMISIÓN DE DEUDA">25 - REMISIÓN DE DEUDA</option>
+									<option value="26 - PRESCRIPCIÓN O CADUCIDAD">26 - PRESCRIPCIÓN O CADUCIDAD</option>
+									<option value="27 - A SATISFACCIÓN DEL ACREEDOR">27 - A SATISFACCIÓN DEL ACREEDOR</option>
+									<option value="28 - TARJETA DE DEBITO">28 - TARJETA DE DEBITO</option>
+									<option value="29 - TARJETA DE SERVICIOS">29 - TARJETA DE SERVICIOS</option>
+									<option value="30 - APLICACIÓN DE ANTICIPOS">30 - APLICACIÓN DE ANTICIPOS</option>
+									<option value="31 - INTERMEDIARIO PAGOS">31 - INTERMEDIARIO PAGOS</option>
+									<option value="99 - POR DEFINIR">99 - POR DEFINIR</option>
 								</select>
 							</div>
 						</div>
@@ -373,10 +516,29 @@ export default function Invoices() {
 									Régimen Fiscal<span className="text-red-500">*</span>
 								</label>
 								<select
+									name="regimen_fiscal"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								>
-									<option value="">-</option>
+									<option value="">Selecciona un régimen fiscal</option>
+									<option value="601 - General de Ley Personas Morales">601 - General de Ley Personas Morales</option>
+									<option value="603 - Personas Morales con Fines no Lucrativos">603 - Personas Morales con Fines no Lucrativos</option>
+									<option value="605 - Sueldos y Salarios e Ingresos Asimilados a Salarios">605 - Sueldos y Salarios e Ingresos Asimilados a Salarios</option>
+									<option value="606 - Arrendamiento">606 - Arrendamiento</option>
+									<option value="608 - Demás ingresos">608 - Demás ingresos</option>
+									<option value="610 - Residentes en el Extranjero sin Establecimiento Permanente en México">610 - Residentes en el Extranjero sin Establecimiento Permanente en México</option>
+									<option value="611 - Ingresos por Dividendos (socios y accionistas)">611 - Ingresos por Dividendos (socios y accionistas)</option>
+									<option value="612 - Personas Físicas con Actividades Empresariales y Profesionales">612 - Personas Físicas con Actividades Empresariales y Profesionales</option>
+									<option value="614 - Ingresos por intereses">614 - Ingresos por intereses</option>
+									<option value="615 - Régimen de los ingresos por obtención de premios">615 - Régimen de los ingresos por obtención de premios</option>
+									<option value="616 - Sin obligaciones fiscales">616 - Sin obligaciones fiscales</option>
+									<option value="620 - Sociedades Cooperativas de Producción que optan por diferir sus ingresos">620 - Sociedades Cooperativas de Producción que optan por diferir sus ingresos</option>
+									<option value="621 - Incorporación Fiscal">621 - Incorporación Fiscal</option>
+									<option value="622 - Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras">622 - Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras</option>
+									<option value="623 - Opcional para Grupos de Sociedades">623 - Opcional para Grupos de Sociedades</option>
+									<option value="624 - Coordinados">624 - Coordinados</option>
+									<option value="625 - Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas">625 - Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas</option>
+									<option value="626 - Régimen Simplificado de Confianza">626 - Régimen Simplificado de Confianza</option>
 								</select>
 							</div>
 							<div>
@@ -384,10 +546,33 @@ export default function Invoices() {
 									Uso de CFDI<span className="text-red-500">*</span>
 								</label>
 								<select
+									name="uso_cfdi"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								>
-									<option value="">-</option>
+									<option value="">Selecciona un uso de CFDI</option>
+									<option value="G01 - Adquisición de mercancías">G01 - Adquisición de mercancías</option>
+									<option value="G02 - Devoluciones, descuentos o bonificaciones">G02 - Devoluciones, descuentos o bonificaciones</option>
+									<option value="G03 - Gastos en general">G03 - Gastos en general</option>
+									<option value="I01 - Construcciones">I01 - Construcciones</option>
+									<option value="I02 - Mobilario y equipo de oficina por inversiones">I02 - Mobilario y equipo de oficina por inversiones</option>
+									<option value="I03 - Equipo de transporte">I03 - Equipo de transporte</option>
+									<option value="I04 - Equipo de computo y accesorios">I04 - Equipo de computo y accesorios</option>
+									<option value="I05 - Dados, troqueles, moldes, matrices y herramental">I05 - Dados, troqueles, moldes, matrices y herramental</option>
+									<option value="I06 - Comunicaciones telefónicas">I06 - Comunicaciones telefónicas</option>
+									<option value="I07 - Comunicaciones satelitales">I07 - Comunicaciones satelitales</option>
+									<option value="I08 - Otra maquinaria y equipo">I08 - Otra maquinaria y equipo</option>
+									<option value="D01 - Honorarios médicos, dentales y gastos hospitalarios">D01 - Honorarios médicos, dentales y gastos hospitalarios</option>
+									<option value="D02 - Gastos médicos por incapacidad o discapacidad">D02 - Gastos médicos por incapacidad o discapacidad</option>
+									<option value="D03 - Gastos funerales">D03 - Gastos funerales</option>
+									<option value="D04 - Donativos">D04 - Donativos</option>
+									<option value="D05 - Intereses reales efectivamente pagados por créditos hipotecarios (casa habitación)">D05 - Intereses reales efectivamente pagados por créditos hipotecarios (casa habitación)</option>
+									<option value="D06 - Aportaciones voluntarias al SAR">D06 - Aportaciones voluntarias al SAR</option>
+									<option value="D07 - Primas por seguros de gastos médicos">D07 - Primas por seguros de gastos médicos</option>
+									<option value="D08 - Gastos de transportación escolar obligatoria">D08 - Gastos de transportación escolar obligatoria</option>
+									<option value="D09 - Depósitos en cuentas para el ahorro, primas que tengan como base planes de pensiones">D09 - Depósitos en cuentas para el ahorro, primas que tengan como base planes de pensiones</option>
+									<option value="D10 - Pagos por servicios educativos (colegiaturas)">D10 - Pagos por servicios educativos (colegiaturas)</option>
+									<option value="P01 - Por definir">P01 - Por definir</option>
 								</select>
 							</div>
 						</div>
@@ -413,6 +598,7 @@ export default function Invoices() {
 								</label>
 								<input
 									type="file"
+									name="foto_ticket"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								/>
@@ -424,6 +610,7 @@ export default function Invoices() {
 								</label>
 								<input
 									type="file"
+									name="constancia_situacion_fiscal"
 									className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:ring-2 focus:ring-[#00d4ff] focus:outline-none"
 									required
 								/>
@@ -453,6 +640,8 @@ export default function Invoices() {
 							/>
 						</div>
 					</form>
+						</>
+					)}
 				</div>
 			</div>
 		</section>

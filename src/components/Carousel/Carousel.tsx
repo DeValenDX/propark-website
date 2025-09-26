@@ -69,7 +69,7 @@ export default function Carousel() {
               alt="ProPark Logo"
               width={800}
               height={256}
-              className="h-40 md:h-44 lg:h-48 w-auto"
+              className="h-56 md:h-60 lg:h-64 w-auto brightness-0 invert"
             />
           </animated.div>
           <animated.p style={textAnim} className="max-w-2xl text-sm md:text-base text-white leading-relaxed">
@@ -116,10 +116,10 @@ export default function Carousel() {
         </div>
 
         {/* Disclaimer text */}
-        <div className="w-full py-4 px-6 mt-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-base text-[#434343] leading-relaxed font-bold">
-              Las marcas y logotipos citados en este sitio son para fines informativos, sin fines de lucro y son prioridad de sus respectivos dueños.
+        <div className="w-full py-8 px-4 mt-8">
+          <div className="w-full text-center">
+            <p className="text-lg text-[#434343] leading-relaxed font-bold tracking-wide">
+              Las marcas y logotipos citados en este sitio son para fines informativos, sin fines de lucro y son propiedad de sus respectivos dueños y/o autores
             </p>
           </div>
         </div>
@@ -130,7 +130,10 @@ export default function Carousel() {
             <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight text-center">
               AÑOS DE EXPERIENCIA EN EL MERCADO
             </h3>
-            <p className="text-sm text-gray-600 text-center">Liderando la innovación</p>
+            <div className="text-center">
+              <p className="text-2xl font-bold text-gray-900 mb-1">+10</p>
+              <p className="text-sm text-gray-600">Liderando la innovación</p>
+            </div>
           </div>
 
           <div className="bg-white rounded-md shadow-md p-4 h-32 flex flex-col justify-center">
@@ -138,7 +141,7 @@ export default function Carousel() {
               ESTACIONAMIENTO EN OPERACIÓN
             </h3>
             <div className="text-center">
-              <p className="text-2xl font-bold text-gray-900 mb-1">91</p>
+              <p className="text-2xl font-bold text-gray-900 mb-1">+100</p>
               <p className="text-sm text-gray-600">Ubicaciones estratégicas</p>
             </div>
           </div>
@@ -148,7 +151,7 @@ export default function Carousel() {
               CANTIDAD DE COLABORADORES
             </h3>
             <div className="text-center">
-              <p className="text-2xl font-bold text-gray-900 mb-1">500</p>
+              <p className="text-2xl font-bold text-gray-900 mb-1">+500</p>
               <p className="text-sm text-gray-600">Equipo especializado</p>
             </div>
           </div>
@@ -158,7 +161,7 @@ export default function Carousel() {
               CAJONES EN OPERACIÓN
             </h3>
             <div className="text-center">
-              <p className="text-2xl font-bold text-gray-900 mb-1">43,414</p>
+              <p className="text-2xl font-bold text-gray-900 mb-1">+50,000</p>
               <p className="text-sm text-gray-600">Espacios disponibles</p>
             </div>
           </div>

@@ -16,6 +16,7 @@
 		"@types/react-google-recaptcha": "^2.1.9",
 		"d3-geo": "^3.1.1",
 		"lucide-react": "0.539.0",
+		"mysql2": "^3.15.1",
 		"next": "15.4.5",
 		"nodemailer": "^7.0.6",
 		"react": "19.1.0",
