@@ -6,35 +6,46 @@ export default function Services() {
 	return (
 		<>
 			<section className="min-h-screen w-screen pb-32">
-				<div className="relative w-full h-96 flex items-center justify-center">
-					<Image
-						src="/assets/pexels-introspectivedsgn-9083324.jpg"
-						alt="Imagen de estacionamiento"
-						fill
-						className="object-cover object-center"
-						priority
-						sizes="100vw"
-						placeholder="blur"
-						blurDataURL="/parking-places/PARKING-blur.jpg"
-					/>
-					{/* Degradado gris superpuesto más intenso */}
+
+				<div className="h-96 bg-cyan-100 flex flex-row">
+					{/* Imagen */}
+					<div className="w-1/2 h-full relative">
+						<Image
+							src="/assets/servicios-camioneta.png"
+							alt="Imagen de estacionamiento"
+							fill
+							className="object-cover object-center rounded-lg"
+							priority
+							sizes="50vw"
+							placeholder="blur"
+							blurDataURL="/parking-places/PARKING-blur.jpg"
+						/>
+						<div className="absolute "></div>
+					</div>
+
+					{/* Texto */}
+					<div className="w-1/2 flex flex-col justify-center items-center px-8 bg-gradient-to-b from-gray-900/90 to-gray-800/70">
+						<span className="text-5xl font-semibold text-white mb-6">SERVICIOS</span>
+						<span className="text-white text-center max-w-xl text-xl font-extralight">
+							<span className="font-bold text-cyan-400">Pro Park</span> es una
+							<span className="font-bold text-cyan-400"> empresa mexicana</span> creada por un grupo de
+							<span className="font-bold text-cyan-400"> especialistas</span> en gestión y operación eficiente de estacionamientos en toda la
+							<span className="font-bold text-cyan-400"> República Mexicana</span>, con un alto nivel de conocimiento del negocio, lo que garantiza a nuestros clientes
+							<span className="font-bold text-cyan-400"> resultados excepcionales</span>.
+						</span>
+					</div>
+
+				</div>
+
+				{/* <div className="relative w-full h-96 flex items-center justify-center">
+					
+					
 					<div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-gray-800/70 flex flex-col items-center justify-center">
-						<div>
-							<span className="relative text-5xl font-semibold text-white z-10">
-								SERVICIOS
-							</span>
-						</div>
-						<div className="flex items-center justify-center mt-4 px-4">
-							<span className="text-white text-center max-w-2xl text-xl font-extralight">
-								<span className="font-bold text-cyan-400">Pro Park</span> es una <span className="font-bold text-cyan-400">empresa mexicana</span> creada por un grupo de
-								<span className="font-bold text-cyan-400">especialistas</span> en gestión y operación eficiente de estacionamientos en toda la <span className="font-bold text-cyan-400">República Mexicana</span>,
-								con un alto nivel de conocimiento del negocio, lo que garantiza a nuestros clientes <span className="font-bold text-cyan-400">resultados excepcionales</span>.
-							</span>
-						</div>
+						
 
 					</div>
-					{/* Contenido de la sección */}
-				</div>
+					
+				</div> */}
 				<div className="flex items-center justify-center mt-12 mb-8 text-4xl font-semibold text-gray-800 flex-col gap-4">
 					<div className="flex flex-col items-center mb-4">
 						<span className="uppercase tracking-widest text-cyan-700 font-bold text-3xl mb-1">
@@ -136,7 +147,7 @@ export default function Services() {
 						</div>
 
 						{/* Card 2 */}
-						<div className="flex-1 relative group overflow-hidden flex items-center justify-center  bg-[url('/assets/profesionalismo.jpg')] bg-cover bg-center  transition-transform duration-300 hover:-translate-y-3 hover:scale-105">
+						<div className="flex-1 relative group overflow-hidden flex items-center justify-center  bg-[url('/assets/profesionistas.jpg')] bg-cover bg-center  transition-transform duration-300 hover:-translate-y-3 hover:scale-105">
 							<div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/70 to-transparent" />
 							<div className="relative z-10 text-center px-4">
 								<span className="text-2xl font-bold text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
