@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 import SuccessMessage from "@/components/forms/SuccessMessage";
 import SendButton from "@/components/Buttons/Send";
-import MathCaptcha from "@/components/forms/MathCaptcha";
 
 export default function JobBoard() {
 	const [formData, setFormData] = useState({
@@ -18,7 +17,6 @@ export default function JobBoard() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [message, setMessage] = useState({ type: "", text: "" });
 	const [isSuccess, setIsSuccess] = useState(false);
-	const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
 		const { name, value, files } = e.target as HTMLInputElement;
@@ -65,14 +63,6 @@ export default function JobBoard() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		
-		// Validar CAPTCHA
-		if (!isCaptchaVerified) {
-			setMessage({
-				type: "error",
-				text: "Por favor, completa la verificación de seguridad.",
-			});
-			return;
-		}
 
 		setIsLoading(true);
 		setMessage({ type: "", text: "" });
@@ -385,7 +375,6 @@ export default function JobBoard() {
 							</div>
 							
 							{/* CAPTCHA */}
-							<MathCaptcha onVerify={setIsCaptchaVerified} />
 							
 							<SendButton
 								isLoading={isLoading}

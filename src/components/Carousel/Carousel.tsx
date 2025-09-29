@@ -119,7 +119,7 @@ export default function Carousel() {
         <div className="w-full py-8 px-4 mt-8">
           <div className="w-full text-center">
             <p className="text-lg text-[#434343] leading-relaxed font-bold tracking-wide">
-              Las marcas y logotipos citados en este sitio son para fines informativos, sin fines de lucro y son propiedad de sus respectivos dueños y/o autores
+              LAS MARCAS Y LOGOTIPOS CITADOS EN ESTE SITIO SON PARA FINES INFORMATIVOS, SIN FINES DE LUCRO Y SON PROPIEDAD DE SUS RESPECTIVOS DUEÑOS Y/O AUTORES
             </p>
           </div>
         </div>
@@ -128,17 +128,17 @@ export default function Carousel() {
         <div className="mt-12 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-md shadow-md p-4 h-32 flex flex-col justify-center">
             <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight text-center">
-              AÑOS DE EXPERIENCIA EN EL MERCADO
+              EXPERIENCIA EN EL MERCADO
             </h3>
             <div className="text-center">
               <p className="text-2xl font-bold text-gray-900 mb-1">+10</p>
-              <p className="text-sm text-gray-600">Liderando la innovación</p>
+              <p className="text-sm text-gray-600">Años liderando la innovación</p>
             </div>
           </div>
 
           <div className="bg-white rounded-md shadow-md p-4 h-32 flex flex-col justify-center">
             <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight text-center">
-              ESTACIONAMIENTO EN OPERACIÓN
+              ESTACIONAMIENTOS EN OPERACIÓN
             </h3>
             <div className="text-center">
               <p className="text-2xl font-bold text-gray-900 mb-1">+100</p>

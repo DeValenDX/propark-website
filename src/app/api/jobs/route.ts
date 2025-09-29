@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY_JOBS);
 
 export async function POST(request: NextRequest) {
   try {
@@ -60,8 +60,8 @@ export async function POST(request: NextRequest) {
 
     // Envío del email
     const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL_JOBS || 'FORMULARIO_BOLSA_TRABAJO <onboarding@resend.dev>',
-      to: [process.env.RESEND_TO_EMAIL || 'factura@ppark.mx'],
+      from: process.env.RESEND_FROM_EMAIL_JOBS || 'capitalhumano@ppark.mx',
+      to: [process.env.RESEND_TO_EMAIL_JOBS || 'capitalhumano@ppark.mx'],
       subject: `Nueva solicitud de trabajo - ${puesto}`,
       attachments: [
         {

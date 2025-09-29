@@ -2,11 +2,9 @@
 
 import Image from "next/image";
 import SendButton from "@/components/Buttons/Send";
-import MathCaptcha from "@/components/forms/MathCaptcha";
 import { useState } from "react";
 
 export default function Invoices() {
-	const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
 	const [message, setMessage] = useState({ type: "", text: "" });
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
@@ -57,14 +55,6 @@ export default function Invoices() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		
-		// Validar CAPTCHA
-		if (!isCaptchaVerified) {
-			setMessage({
-				type: "error",
-				text: "Por favor, completa la verificación de seguridad.",
-			});
-			return;
-		}
 
 		// Crear FormData con todos los campos del formulario
 		const formData = new FormData(e.target as HTMLFormElement);
@@ -629,7 +619,6 @@ export default function Invoices() {
 						)}
 						
 						{/* CAPTCHA */}
-						<MathCaptcha onVerify={setIsCaptchaVerified} />
 						
 						<div>
 							<SendButton
