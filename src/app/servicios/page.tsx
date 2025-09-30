@@ -5,18 +5,18 @@ import Image from "next/image";
 export default function Services() {
 	return (
 		<>
-			<section className="min-h-screen w-screen pb-32">
+			<section className="min-h-screen w-full overflow-x-hidden pb-32">
 
-				<div className="h-96 bg-cyan-100 flex flex-row">
+				<div className="h-96 bg-cyan-100 flex flex-col md:flex-row">
 					{/* Imagen */}
-					<div className="w-1/2 h-full relative">
+					<div className="w-full md:w-1/2 h-48 md:h-full relative">
 						<Image
 							src="/assets/servicios-camioneta.png"
 							alt="Imagen de estacionamiento"
 							fill
 							className="object-cover object-center rounded-lg bg-gradient-to-b from-gray-900/70 to-gray-800/70"
 							priority
-							sizes="50vw"
+							sizes="(max-width: 768px) 100vw, 50vw"
 							placeholder="blur"
 							blurDataURL="/parking-places/PARKING-blur.jpg"
 						/>
@@ -24,9 +24,9 @@ export default function Services() {
 					</div>
 
 					{/* Texto */}
-					<div className="w-1/2 flex flex-col justify-center items-center px-8 bg-gradient-to-b from-gray-700/90 to-gray-600/70">
-						<span className="text-5xl font-semibold text-white mb-6">SERVICIOS</span>
-						<span className="text-white text-center max-w-xl text-xl font-extralight">
+					<div className="w-full md:w-1/2 flex flex-col justify-center items-center px-4 md:px-8 py-8 md:py-0 bg-gradient-to-b from-gray-700/90 to-gray-600/70">
+						<span className="text-3xl md:text-5xl font-semibold text-white mb-4 md:mb-6">SERVICIOS</span>
+						<span className="text-white text-center max-w-xl text-base md:text-xl font-extralight">
 							<span className="font-bold text-cyan-400">Pro Park</span> es una
 							<span className="font-bold text-cyan-400"> empresa mexicana</span> creada por un grupo de
 							<span className="font-bold text-cyan-400"> especialistas</span> en gestión y operación eficiente de estacionamientos en toda la
@@ -110,27 +110,27 @@ export default function Services() {
 					</div>
 				</div>
 
-				<div className="w-full mt-20 px-20">
+				<div className="w-full mt-20 px-4 md:px-10 lg:px-20">
 					<div className="flex items-center justify-center mt-12 mb-8 text-4xl font-semibold text-gray-800 flex-col gap-4">
 						<div className="flex flex-col items-center mb-4">
-							<span className="uppercase tracking-widest text-cyan-700 font-bold text-3xl mb-1">
+							<span className="uppercase tracking-widest text-cyan-700 font-bold text-2xl md:text-3xl mb-1 text-center">
 								BENEFICIOS
 							</span>
-							<h2 className="text-gray-800 font-semibold text-2xl  text-center drop-shadow-sm">
+							<h2 className="text-gray-800 font-semibold text-xl md:text-2xl text-center drop-shadow-sm px-4">
 								TE OFRECEMOS SOLUCIONES
 							</h2>
 						</div>
 					</div>
 					{/* Cards pegadas con imágenes, degradado más fuerte y título/descrición hover */}
-					<div className="h-96 rounded-3xl shadow-lg overflow-hidden flex flex-row">
+					<div className="min-h-[24rem] md:h-96 rounded-3xl shadow-lg overflow-hidden flex flex-col md:flex-row gap-4 md:gap-0 p-4 md:p-0">
 						{/* Card 1 */}
-						<div className="flex-1 relative group overflow-hidden flex items-center justify-center bg-[#007DA8] transition-transform duration-300 hover:-translate-y-3 hover:scale-105">
+						<div className="flex-1 min-h-[200px] md:min-h-0 relative group overflow-hidden flex items-center justify-center bg-[#007DA8] transition-transform duration-300 md:hover:-translate-y-3 md:hover:scale-105 rounded-2xl md:rounded-none">
 							{/* Contenedor de título y descripción */}
 							<div className="relative z-10 text-center px-4">
-								<span className="text-2xl font-bold text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
+								<span className="text-xl md:text-2xl font-bold text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
 									Eficiencia
 								</span>
-								<p className="absolute inset-0 flex items-center justify-center text-white text-base font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+								<p className="absolute inset-0 flex items-center justify-center text-white text-sm md:text-base font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100 px-4">
 									Hemos diseñado soluciones inteligentes & estrategias
 									eficientes que resuelven la operación y control impecable de
 									los estacionamientos que operamos.
@@ -139,13 +139,13 @@ export default function Services() {
 						</div>
 
 						{/* Card 2 */}
-						<div className="flex-1 relative group overflow-hidden flex items-center justify-center  bg-[url('/assets/profesionistas.jpg')] bg-cover bg-center  transition-transform duration-300 hover:-translate-y-3 hover:scale-105">
+						<div className="flex-1 min-h-[200px] md:min-h-0 relative group overflow-hidden flex items-center justify-center  bg-[url('/assets/profesionistas.jpg')] bg-cover bg-center  transition-transform duration-300 md:hover:-translate-y-3 md:hover:scale-105 rounded-2xl md:rounded-none">
 							<div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/70 to-transparent" />
 							<div className="relative z-10 text-center px-4">
-								<span className="text-2xl font-bold text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
+								<span className="text-xl md:text-2xl font-bold text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
 									Profesionalismo
 								</span>
-								<p className="absolute inset-0 flex items-center justify-center text-white text-base font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+								<p className="absolute inset-0 flex items-center justify-center text-white text-sm md:text-base font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100 px-4">
 									Más de 500 colaboradores capacitados para atender las
 									solicitudes de nuestros clientes.
 								</p>
@@ -153,13 +153,13 @@ export default function Services() {
 						</div>
 
 						{/* Card 3 */}
-						<div className="flex-1 relative group overflow-hidden flex items-center justify-center  bg-[url('/assets/pexels-pixabay-63294.jpg')] bg-cover bg-center  transition-transform duration-300 hover:-translate-y-3 hover:scale-105">
+						<div className="flex-1 min-h-[200px] md:min-h-0 relative group overflow-hidden flex items-center justify-center  bg-[url('/assets/pexels-pixabay-63294.jpg')] bg-cover bg-center  transition-transform duration-300 md:hover:-translate-y-3 md:hover:scale-105 rounded-2xl md:rounded-none">
 							<div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/70 to-transparent" />
 							<div className="relative z-10 text-center px-4">
-								<span className="text-2xl font-bold text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
+								<span className="text-xl md:text-2xl font-bold text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
 									Experiencia
 								</span>
-								<p className="absolute inset-0 flex items-center justify-center text-white text-base font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+								<p className="absolute inset-0 flex items-center justify-center text-white text-sm md:text-base font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100 px-4">
 									Contamos con especialistas en cada rublo como parte de nuestro
 									compromiso ofrecemos garantizado nuestro compromiso con las
 									políticas de la empresa.
@@ -168,12 +168,12 @@ export default function Services() {
 						</div>
 
 						{/* Card 4 */}
-						<div className="flex-1 relative group overflow-hidden flex items-center justify-center bg-[#007DA8] transition-transform duration-300 hover:-translate-y-3 hover:scale-105">
+						<div className="flex-1 min-h-[200px] md:min-h-0 relative group overflow-hidden flex items-center justify-center bg-[#007DA8] transition-transform duration-300 md:hover:-translate-y-3 md:hover:scale-105 rounded-2xl md:rounded-none">
 							<div className="relative z-10 text-center px-4">
-								<span className="text-2xl font-bold text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
+								<span className="text-xl md:text-2xl font-bold text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
 									Sistemas Guiados
 								</span>
-								<p className="absolute inset-0 flex items-center justify-center text-white text-base font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+								<p className="absolute inset-0 flex items-center justify-center text-white text-sm md:text-base font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100 px-4">
 									Guíamos a los usuarios hasta los espacios disponibles de forma
 									fácil y rápida. Si facilitas y agilizas el estacionamiento
 									conseguirás tener menos congestiones, menos contaminación y

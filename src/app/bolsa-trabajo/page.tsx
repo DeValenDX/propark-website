@@ -129,7 +129,7 @@ export default function JobBoard() {
 		}
 	};
 	return (
-		<section className="min-h-screen w-screen">
+		<section className="min-h-screen w-full overflow-x-hidden">
 			<div className="relative w-full h-96 flex items-center justify-center">
 				<Image
 					src="/assets/jobBoard.jpg"
@@ -142,14 +142,14 @@ export default function JobBoard() {
 					blurDataURL="/parking-places/PARKING-blur.jpg"
 				/>
 
-				<div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-gray-800/70 flex flex-col items-center justify-center">
+				<div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-gray-800/70 flex flex-col items-center justify-center px-4">
 					<div>
-						<span className="relative text-5xl font-semibold text-white z-10">
+						<span className="relative text-3xl md:text-5xl font-semibold text-white z-10 text-center">
 							BOLSA DE TRABAJO
 						</span>
 					</div>
 					<div className="flex items-center justify-center mt-4 px-4">
-						<span className="text-white text-center max-w-2xl text-xl font-extralight">
+						<span className="text-white text-center max-w-2xl text-base md:text-xl font-extralight">
 							¿Buscas formar parte de un equipo{" "}
 							<span className="font-semibold text-[#00d4ff]">innovador</span> y{" "}
 							<span className="font-semibold text-[#00d4ff]">comprometido</span>
@@ -175,7 +175,7 @@ export default function JobBoard() {
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-1 items-center justify-center py-16 px-10 bg-gray-50">
+			<div className="flex flex-1 items-center justify-center py-16 px-4 md:px-10 bg-gray-50">
 				<div className="w-full  grid grid-cols-1 md:grid-cols-2 bg-white rounded-2xl shadow-xl overflow-hidden">
 					<div className="relative text-white p-8 flex flex-col justify-center">
 						<Image

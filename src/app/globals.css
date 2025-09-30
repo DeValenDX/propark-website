@@ -9,6 +9,8 @@ html {
 body {
   margin: 0;
   font-family: var(--font-geist-sans), sans-serif;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Transiciones suaves para el menú */

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function WhoWeAre() {
 	return (
-		<section className="min-h-screen w-screen">
+		<section className="min-h-screen w-full overflow-x-hidden">
 			<div className="relative w-full h-96 flex items-center justify-center">
 				<Image
 					src="/assets/parking-bg.jpg"
@@ -15,14 +15,14 @@ export default function WhoWeAre() {
 					blurDataURL="/parking-places/PARKING-blur.jpg"
 				/>
 				{/* Degradado gris superpuesto más intenso */}
-				<div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-gray-800/70 flex flex-col items-center justify-center">
+				<div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-gray-800/70 flex flex-col items-center justify-center px-4">
 					<div>
-						<span className="relative text-5xl font-semibold text-white z-10">
+						<span className="relative text-3xl md:text-5xl font-semibold text-white z-10 text-center">
 							ESTACIONAMIENTOS
 						</span>
 					</div>
 					<div className="flex items-center justify-center mt-4 px-4">
-						<span className="text-white text-center max-w-2xl text-xl font-extralight">
+						<span className="text-white text-center max-w-2xl text-base md:text-xl font-extralight">
 							Nuestra marca tiene presencia en todo el país, consolidándose como{" "}
 							<span className="font-bold text-cyan-400">líder</span> en
 							soluciones de estacionamiento{" "}
@@ -51,19 +51,19 @@ export default function WhoWeAre() {
 				{/* Contenido de la sección */}
 			</div>
 
-			<div className="flex items-center justify-center mt-12 mb-8 text-4xl font-semibold text-gray-800 flex-col gap-4 px-10">
+			<div className="flex items-center justify-center mt-12 mb-8 text-4xl font-semibold text-gray-800 flex-col gap-4 px-4 md:px-10">
 				<div className="flex flex-col items-center mb-4">
-					<span className="uppercase tracking-widest text-cyan-700 font-bold text-3xl mb-1">
+					<span className="uppercase tracking-widest text-cyan-700 font-bold text-2xl md:text-3xl mb-1 text-center">
 						Presencia Nacional
 					</span>
-					<h2 className="text-gray-800 font-semibold text-2xl text-center drop-shadow-sm">
+					<h2 className="text-gray-800 font-semibold text-xl md:text-2xl text-center drop-shadow-sm">
 						Descubre nuestros estacionamientos en todo México
 					</h2>
 
 					<div className="w-16 h-1 bg-cyan-400 rounded-full mt-2 mb-1" />
 				</div>
 
-				<div className="flex items-center justify-center w-full h-[600px] rounded-4xl shadow-2xl relative">
+				<div className="flex items-center justify-center w-full h-[300px] md:h-[600px] rounded-4xl shadow-2xl relative">
 					<div className="relative w-full h-full max-w-5xl overflow-hidden group">
 						<Image
 							src="/assets/prescencia.png"

@@ -99,21 +99,16 @@ export const Header = () => {
           }`}
         >
           {menuItems.map((item) => (
-            <button
+            <Link
               key={item.name}
-              onClick={() => {
-                const section = document.getElementById(item.href);
-                if (section) {
-                  section.scrollIntoView({ behavior: "smooth" });
-                  closeMenu();
-                }
-              }}
+              href={item.href}
+              onClick={closeMenu}
               className={`block w-full text-left px-3 py-2 text-[#008FBE] hover:text-[#006d94] hover:bg-gray-50 rounded-md text-base font-medium cursor-pointer transition-colors duration-200 ${
                 isActive(item.href) ? "bg-blue-50 border-l-4 border-[#008FBE]" : ""
               }`}
             >
               {item.name}
-            </button>
+            </Link>
           ))}
         </div>
       </div>

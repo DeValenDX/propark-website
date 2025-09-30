@@ -106,7 +106,7 @@ export default function Invoices() {
 	};
 
 	return (
-		<section className="min-h-screen w-screen">
+		<section className="min-h-screen w-full overflow-x-hidden">
 			<div className="relative w-full h-96 flex items-center justify-center">
 				<Image
 					src="/assets/invoices.jpg"
@@ -118,14 +118,14 @@ export default function Invoices() {
 					placeholder="blur"
 					blurDataURL="/parking-places/PARKING-blur.jpg"
 				/>
-				<div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-gray-800/70 flex flex-col items-center justify-center">
+				<div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-gray-800/70 flex flex-col items-center justify-center px-4">
 					<div>
-						<span className="relative text-5xl font-semibold text-white z-10">
+						<span className="relative text-3xl md:text-5xl font-semibold text-white z-10 text-center">
 							FACTURACIÓN
 						</span>
 					</div>
 					<div className="flex items-center justify-center mt-4 px-4">
-						<span className="text-white text-center max-w-2xl text-xl font-extralight">
+						<span className="text-white text-center max-w-2xl text-sm md:text-xl font-extralight">
 							Estimado cliente, Para emitir su{" "}
 							<span className="font-semibold text-[#00d4ff]">factura</span>, es
 							necesario completar todos los siguientes campos con la información
@@ -156,7 +156,7 @@ export default function Invoices() {
 				</div>
 			</div>
 
-			<div className="flex flex-1 items-center justify-center py-8 px-8 bg-gray-50">
+			<div className="flex flex-1 items-center justify-center py-8 px-4 md:px-8 bg-gray-50">
 				<div className="w-full bg-white rounded-2xl shadow-xl overflow-hidden p-8 relative">
 					{/* Marca de agua de fondo - solo se muestra si no se ha enviado el formulario */}
 					{!isFormSubmitted && (

@@ -46,7 +46,7 @@ const items = [
 
 export default function WhoWeAre() {
 	return (
-		<section className="min-h-screen w-screen">
+		<section className="min-h-screen w-full overflow-x-hidden">
 			<div className="relative w-full h-96 flex items-center justify-center">
 				<Image
 					src="/assets/buildings.jpg"
@@ -59,14 +59,14 @@ export default function WhoWeAre() {
 					blurDataURL="/parking-places/PARKING-blur.jpg"
 				/>
 				{/* Degradado gris superpuesto más intenso */}
-				<div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-gray-800/70 flex flex-col items-center justify-center">
+				<div className="absolute inset-0 bg-gradient-to-b from-gray-900/90 to-gray-800/70 flex flex-col items-center justify-center px-4">
 					<div>
-						<span className="relative text-5xl font-semibold text-white z-10">
+						<span className="relative text-3xl md:text-5xl font-semibold text-white z-10 text-center">
 							QUIÉNES SOMOS
 						</span>
 					</div>
 					<div className="flex items-center justify-center mt-4 px-4">
-						<span className="text-white text-center max-w-2xl text-xl font-extralight">
+						<span className="text-white text-center max-w-2xl text-base md:text-xl font-extralight">
 							<span className="font-bold text-cyan-400">ProPark</span> es una <span className="font-bold text-cyan-400">empresa mexicana</span> creada por un grupo de
 							<span className="font-bold text-cyan-400">especialistas</span> en <span className="font-bold text-cyan-400">gestión y operación eficiente</span> de estacionamientos en toda la
 							<span className="font-bold text-cyan-400">República Mexicana</span>, con un alto nivel de conocimiento del negocio, lo que garantiza a nuestros clientes
@@ -86,16 +86,16 @@ export default function WhoWeAre() {
 				{/* Contenido de la sección */}
 			</div>
 
-			<div className="flex items-center justify-center mt-16 text-2xl font-semibold text-gray-800 flex-col gap-2">
+			<div className="flex items-center justify-center mt-16 text-2xl font-semibold text-gray-800 flex-col gap-2 px-4">
 
-				<div className="relative bg-gradient-to-br flex items-center justify-center px-12 py-12 w-full max-w-4xl min-h-[360px] overflow-hidden">
+				<div className="relative bg-gradient-to-br flex items-center justify-center px-4 md:px-12 py-8 md:py-12 w-full max-w-4xl min-h-[300px] md:min-h-[360px] overflow-hidden">
 					<div className="flex flex-col items-center relative z-10 w-full">
-						<span className="uppercase tracking-widest text-cyan-700 font-bold text-3xl mb-1 flex items-center gap-2 drop-shadow">
-							<Rocket size={34} strokeWidth={2.2} className="text-cyan-600" />
+						<span className="uppercase tracking-widest text-cyan-700 font-bold text-2xl md:text-3xl mb-1 flex items-center gap-2 drop-shadow text-center">
+							<Rocket size={28} strokeWidth={2.2} className="text-cyan-600 md:w-[34px] md:h-[34px]" />
 							Misión
 						</span>
 						<div className="w-20 h-1 bg-gradient-to-r from-cyan-400 via-cyan-600 to-cyan-400 rounded-full mt-2 mb-4 shadow" />
-						<span className="text-center text-gray-700 text-2xl font-light max-w-3xl w-full drop-shadow-sm">
+						<span className="text-center text-gray-700 text-lg md:text-2xl font-light max-w-3xl w-full drop-shadow-sm">
 							Operar y administrar estacionamientos con{" "}
 							<span className="font-semibold text-cyan-700">excelencia</span>,{" "}
 							<span className="font-semibold text-cyan-700">integridad</span> e{" "}
@@ -110,15 +110,15 @@ export default function WhoWeAre() {
 				</div>
 			</div>
 
-			<div className="flex items-center justify-center  text-2xl font-semibold text-gray-800 flex-col gap-2">
-				<div className="relative bg-gradient-to-br flex items-center justify-center px-12 py-12 w-full max-w-4xl min-h-[360px] overflow-hidden">
+			<div className="flex items-center justify-center  text-2xl font-semibold text-gray-800 flex-col gap-2 px-4">
+				<div className="relative bg-gradient-to-br flex items-center justify-center px-4 md:px-12 py-8 md:py-12 w-full max-w-4xl min-h-[300px] md:min-h-[360px] overflow-hidden">
 					<div className="flex flex-col items-center relative z-10 w-full">
-						<span className="uppercase tracking-widest text-cyan-700 font-bold text-3xl mb-1 flex items-center gap-2 drop-shadow">
-							<Eye size={34} strokeWidth={2.2} className="text-cyan-600" />
+						<span className="uppercase tracking-widest text-cyan-700 font-bold text-2xl md:text-3xl mb-1 flex items-center gap-2 drop-shadow text-center">
+							<Eye size={28} strokeWidth={2.2} className="text-cyan-600 md:w-[34px] md:h-[34px]" />
 							Visión
 						</span>
 						<div className="w-20 h-1 bg-gradient-to-r from-cyan-400 via-cyan-600 to-cyan-400 rounded-full mt-2 mb-4 shadow" />
-						<span className="text-center text-gray-700 text-2xl font-light max-w-3xl w-full drop-shadow-sm">
+						<span className="text-center text-gray-700 text-lg md:text-2xl font-light max-w-3xl w-full drop-shadow-sm">
 							Ser la empresa <span className="font-semibold text-cyan-700">líder</span> en <span className="font-semibold text-cyan-700">soluciones</span> de <span className="font-semibold text-cyan-700">operación</span> y <span className="font-semibold text-cyan-700">administración</span> de <span className="font-semibold text-cyan-700">estacionamientos</span> en <span className="font-semibold text-cyan-700">México</span>
 						</span>
 					</div>
@@ -236,20 +236,43 @@ export default function WhoWeAre() {
 
 
 					{/* Grid tipo "lago" de 3x3 para mostrar imágenes de estacionamientos inteligentes */}
-					<div className="flex items-center justify-center mt-8 text-2xl font-semibold text-gray-800 flex-col gap-1">
+					<div className="flex items-center justify-center mt-8 text-2xl font-semibold text-gray-800 flex-col gap-1 px-4">
 						{/* Título */}
 						<div className="flex flex-col items-center ">
-							<span className="uppercase tracking-widest text-cyan-700 font-bold text-3xl mb-1">
+							<span className="uppercase tracking-widest text-cyan-700 font-bold text-2xl md:text-3xl mb-1 text-center">
 								Visión de negocios
 							</span>
-							<h2 className="text-gray-800 font-semibold text-2xl text-center drop-shadow-sm">
+							<h2 className="text-gray-800 font-semibold text-xl md:text-2xl text-center drop-shadow-sm">
 								Estacionamientos inteligentes
 							</h2>
 							<div className="w-16 h-1 bg-[#0091c0] rounded-full mt-2 mb-1" />
 						</div>
 
+						{/* Versión móvil/tablet: Grid de cartas */}
+						<div className="lg:hidden w-full max-w-4xl mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
+							{items.map((item, idx) => (
+								<div key={idx} className="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+									<div className="relative w-full h-64">
+										<Image
+											src={item.src}
+											alt={item.alt}
+											fill
+											className="object-cover transition-transform duration-300 group-hover:scale-110"
+											sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+										/>
+										<div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent" />
+									</div>
+									<div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+										<h3 className="text-white font-bold text-lg drop-shadow-lg">
+											{item.text}
+										</h3>
+									</div>
+								</div>
+							))}
+						</div>
 
-						<div className="relative w-[700px] h-[700px] flex items-center justify-center">
+						{/* Versión escritorio: Diagrama circular */}
+						<div className="hidden lg:flex relative w-[700px] h-[700px] items-center justify-center">
 							{/* SVG para unir los puntos con líneas */}
 							<svg
 								className="absolute left-0 top-0 pointer-events-none"
